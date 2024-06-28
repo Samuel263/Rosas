@@ -10,7 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
     components.forEach(component => {
         component.addEventListener('dragstart', dragStart);
         component.addEventListener('click', () => {
-            addToAssembly(component);
+            const data = {
+                component: component.dataset.component,
+                price: component.dataset.price,
+                imageSrc: component.querySelector('img').src
+            };
+            addToAssembly(data);
             animatePop(component);
         });
     });
@@ -45,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         componentElem.dataset.price = data.price;
         componentElem.innerHTML = `
             <img src="${data.imageSrc}" alt="${data.component}">
-            <p>${data.component} - ${formatPrice(data.price)} CLP</p>
+            <p>${data.component} - ${formatPrice(data.price)}</p>
         `;
         componentElem.addEventListener('click', () => {
             componentElem.remove();
