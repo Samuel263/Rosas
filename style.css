@@ -189,8 +189,8 @@ button:hover {
       margin: 5px 0;
   }
 
-  .total-cost-text {
-      bottom: 70px; /* Adjust for mobile view */
+  #preview .total-cost-text {
+      bottom: 100px; /* Adjust to fit above stacked buttons */
   }
 }
 
