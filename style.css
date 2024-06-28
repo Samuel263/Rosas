@@ -188,6 +188,10 @@ button:hover {
       width: 100%;
       margin: 5px 0;
   }
+
+  .total-cost-text {
+      bottom: 70px; /* Adjust for mobile view */
+  }
 }
 
 @media screen and (min-width: 769px) {
@@ -197,7 +201,7 @@ button:hover {
   }
 }
 
-.float{
+.float {
   position: fixed;
   width: 60px;
   height: 60px;
@@ -216,7 +220,6 @@ button:hover {
   margin-top: 16px;
 }
 
-
 /* Existing styles... */
 
 .pop {
@@ -232,49 +235,5 @@ button:hover {
     }
     100% {
         transform: scale(1);
-    }
-}
-
-.total-cost-text {
-    position: absolute;
-    bottom: 50px; /* Adjusted to be above the buttons */
-    text-align: center;
-    width: 100%;
-}
-
-.buttons-container {
-    position: absolute;
-    bottom: 10px; /* Adjusted to bottom */
-    display: flex;
-    justify-content: space-between;
-    width: 65%;
-    padding: 0 10px;
-}
-
-.buttons-container button {
-    flex-grow: 1;
-    margin: 0 5px; /* Space between buttons */
-}
-
-@media screen and (max-width: 768px) {
-    main {
-        flex-direction: column;
-        align-items: center;
-        height: auto;
-    }
-
-    section {
-        width: 90%;
-        margin-bottom: 1rem;
-    }
-
-    .buttons-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .buttons-container button {
-        width: 100%;
-        margin: 5px 0;
     }
 }
