@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const assemblyCanvas = document.getElementById('assembly-canvas');
     const previewCanvas = document.getElementById('preview-canvas');
     const totalCostElem = document.getElementById('total-cost');
+    const finalTotalCostElem = document.getElementById('final-total-cost');
     const clearAssemblyBtn = document.getElementById('clear-assembly');
     const addToCartBtn = document.getElementById('add-to-cart');
     const checkoutBtn = document.getElementById('checkout');
@@ -68,7 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
         components.forEach(component => {
             total += parseInt(component.dataset.price, 10);
         });
-        totalCostElem.textContent = formatPrice(total);
+        const formattedTotal = formatPrice(total);
+        totalCostElem.textContent = formattedTotal;
+        finalTotalCostElem.textContent = formattedTotal;
     }
 
     function updatePreview() {
