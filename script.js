@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     components.forEach(component => {
         component.addEventListener('dragstart', dragStart);
+        component.addEventListener('click', () => {
+            addToAssembly(component);
+            animatePop(component);
+        });
     });
 
     assemblyCanvas.addEventListener('dragover', dragOver);
@@ -33,12 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function drop(e) {
         e.preventDefault();
         const data = JSON.parse(e.dataTransfer.getData('text/plain'));
+        addToAssembly(data);
+    }
+
+    function addToAssembly(data) {
         const componentElem = document.createElement('div');
         componentElem.dataset.price = data.price;
         componentElem.innerHTML = `
-          <p>${data.component} / ${formatPrice(data.price)} CLP</p>
             <img src="${data.imageSrc}" alt="${data.component}">
-
+            <p>${data.component} - ${formatPrice(data.price)} CLP</p>
         `;
         componentElem.addEventListener('click', () => {
             componentElem.remove();
@@ -83,6 +90,13 @@ document.addEventListener('DOMContentLoaded', () => {
             currency: 'CLP',
             minimumFractionDigits: 0
         }).format(price);
+    }
+
+    function animatePop(component) {
+        component.classList.add('pop');
+        setTimeout(() => {
+            component.classList.remove('pop');
+        }, 300); // duration of the animation
     }
 
     components.forEach(component => {
