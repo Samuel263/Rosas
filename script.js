@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         componentElem.dataset.price = data.price;
         componentElem.innerHTML = `
             <img src="${data.imageSrc}" alt="${data.component}">
-            <p>${data.component} - $${data.price} CLP</p>
+            <p>${data.component} - ${formatPrice(data.price)} CLP</p>
         `;
         componentElem.addEventListener('click', () => {
             componentElem.remove();
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         components.forEach(component => {
             total += parseInt(component.dataset.price, 10);
         });
-        totalCostElem.textContent = total;
+        totalCostElem.textContent = formatPrice(total);
     }
 
     function updatePreview() {
@@ -75,4 +75,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkout() {
         alert('Procediendo al pago');
     }
+
+    function formatPrice(price) {
+        return new Intl.NumberFormat('es-CL', {
+            style: 'currency',
+            currency: 'CLP',
+            minimumFractionDigits: 0
+        }).format(price);
+    }
+
+    components.forEach(component => {
+        const priceElem = component.querySelector('p:last-child');
+        const price = component.dataset.price;
+        priceElem.textContent = formatPrice(price);
+    });
 });
