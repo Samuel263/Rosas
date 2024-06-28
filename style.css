@@ -103,6 +103,10 @@ section {
   border-radius: 10px;
 }
 
+#assembly-canvas {
+  max-height: calc(100vh - 250px); /* Adjusted height to stay above total cost text and buttons */
+}
+
 #assembly-canvas div, #preview-canvas div {
   cursor: pointer;
   padding: 0.5rem;
@@ -190,7 +194,11 @@ button:hover {
   }
 
   #preview .total-cost-text {
-      bottom: 100px; /* Adjust to fit above stacked buttons */
+      bottom: 100px; /* Adjust for mobile view */
+  }
+
+  #assembly-canvas {
+      max-height: calc(100vh - 300px); /* Adjust for mobile view to stay above total cost text and buttons */
   }
 }
 
