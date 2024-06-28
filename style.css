@@ -104,7 +104,20 @@ section {
 }
 
 #assembly-canvas {
-  max-height: calc(100vh - 350px); /* Adjusted height to stay above total cost text and buttons */
+    border: 1px solid #ccc;
+    min-height: 200px;
+    max-height: 60vh; /* Limita la altura máxima */
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    overflow-y: auto; /* Permite desplazamiento vertical */
+}
+
+@media (max-width: 768px) {
+    #assembly-canvas {
+        flex-direction: column;
+    }
 }
 
 #assembly-canvas div, #preview-canvas div {
