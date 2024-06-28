@@ -101,10 +101,11 @@ section {
   width: 100%;
   overflow-y: auto; /* Added vertical scroll for canvas sections */
   border-radius: 10px;
+  margin-bottom: 20px; /* Added margin to avoid overlap with total cost and buttons */
 }
 
 #assembly-canvas {
-  max-height: calc(100vh - 250px); /* Adjusted height to stay above total cost text and buttons */
+  max-height: calc(100vh - 300px); /* Adjusted height to stay above total cost text and buttons */
 }
 
 #assembly-canvas div, #preview-canvas div {
