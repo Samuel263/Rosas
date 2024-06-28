@@ -49,7 +49,7 @@ section {
 
 .category-header h3 {
   margin: 0;
-	color: white
+  color: white;
 }
 
 .category-content {
@@ -169,41 +169,49 @@ button:hover {
 
 @media screen and (max-width: 768px) {
   main {
-      flex-direction: column;
-      align-items: center;
-      height: auto;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
   }
 
   section {
-      width: 90%;
-      margin-bottom: 1rem;
+    width: 90%;
+    margin-bottom: 1rem;
   }
 
   .buttons-container {
-      flex-direction: column;
-      align-items: center;
+    flex-direction: column;
+    align-items: center;
   }
 
   .buttons-container button {
-      width: 100%;
-      margin: 5px 0;
+    width: 100%;
+    margin: 5px 0;
   }
 }
 
-.float{
-	position:fixed;
-	width:60px;
-	height:60px;
-	bottom:40px;
-	right:40px;
-	background-color:#25d366;
-	color:#FFF;
-	border-radius:50px;
-	text-align:center;
-  font-size:30px;
-  z-index:100;
+/* Add styles for desktop view to make product lists scrollable */
+@media screen and (min-width: 1024px) {
+  .category-content {
+    max-height: 400px; /* Adjust as necessary */
+    overflow-y: auto;
+  }
 }
 
-.my-float{
-	margin-top:16px;
+.float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  background-color: #25d366;
+  color: #FFF;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  z-index: 100;
+}
+
+.my-float {
+  margin-top: 16px;
 }
