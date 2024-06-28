@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de rosas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Tienda de rosas</h1>
+    </header>
+    <main>
+        <section id="components-library">
+            <h2>Productos</h2>
+            <div class="category">
+                <div class="category-header">
+                    <h3>Rosas</h3>
+                </div>
+                <div id="roses" class="category-content">
+                    <div class="component" draggable="true" data-component="Rosa 1" data-price="3000">
+                        <img src="images/rose.jpg" alt="Rosa 1">
+                        <p>Rosa 1</p>
+                    </div>
+                    <div class="component" draggable="true" data-component="Rosa 2" data-price="4000">
+                        <img src="images/rose.jpg" alt="Rosa 2">
+                        <p>Rosa 2</p>
+                    </div>
+                    <div class="component" draggable="true" data-component="Rosa 3" data-price="5000">
+                        <img src="images/rose.jpg" alt="Rosa 3">
+                        <p>Rosa 3</p>
+                    </div>
+                </div>
+            </div>
+            <div class="category">
+                <div class="category-header">
+                    <h3>Chocolates</h3>
+                </div>
+                <div id="chocolates" class="category-content">
+                    <div class="component" draggable="true" data-component="Chocolate 1" data-price="2000">
+                        <img src="images/chocolate_box.jpg" alt="Chocolate 1">
+                        <p>Chocolate 1</p>
+                    </div>
+                    <div class="component" draggable="true" data-component="Chocolate 2" data-price="2500">
+                        <img src="images/chocolate_box.jpg" alt="Chocolate 2">
+                        <p>Chocolate 2</p>
+                    </div>
+                    <div class="component" draggable="true" data-component="Chocolate 3" data-price="3000">
+                        <img src="images/chocolate_box.jpg" alt="Chocolate 3">
+                        <p>Chocolate 3</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="assembly-area">
+            <h2>Arma tu pedido</h2>
+            <div id="assembly-canvas">
+                <!-- Drop components here -->
+            </div>
+            <button id="clear-assembly">Borrar pedido</button>
+            <p class="total-cost-text">Total a pagar: $<span id="total-cost">0</span> CLP</p>
+        </section>
+        <section id="preview">
+            <h2>Pedido final</h2>
+            <div id="preview-canvas">
+                <!-- Real-time product preview -->
+            </div>
+            <div class="buttons-container">
+                <button id="add-to-cart">Agregar al carrito</button>
+                <button id="checkout">Pagar</button>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

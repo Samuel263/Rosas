@@ -1,0 +1,190 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0f0f0;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
+}
+
+main {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2rem;
+  width: 90%;
+  height: 80vh; /* Adjusted height to utilize more space */
+}
+
+section {
+  background-color: white;
+  padding: 1rem;
+  width: 30%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; /* Added for absolute positioning of buttons */
+}
+
+.category {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.category-header {
+  background-color: #eaeaea;
+  padding: 0.5rem;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.category-header h3 {
+  margin: 0;
+}
+
+.category-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 0.5rem;
+  border-radius: 10px;
+  margin-top: 0.5rem;
+  overflow-x: auto; /* Horizontal scroll for products */
+}
+
+.component {
+  background-color: #ffffff;
+  color: #333;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  text-align: center;
+  cursor: grab;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100px;
+}
+
+.component img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+#assembly-area, #preview {
+  flex-grow: 1;
+  overflow-y: auto; /* Vertical scroll for assembly and preview sections */
+}
+
+#assembly-canvas, #preview-canvas {
+  border: 1px solid #ffffff;
+  height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Changed to flex-start */
+  flex-direction: column;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  overflow-y: auto; /* Added vertical scroll for canvas sections */
+  border-radius: 10px;
+}
+
+#assembly-canvas div, #preview-canvas div {
+  cursor: pointer;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#assembly-canvas div:hover, #preview-canvas div:hover {
+  background-color: #eaeaea;
+}
+
+#assembly-canvas img, #preview-canvas img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#clear-assembly {
+  position: absolute;
+  bottom: 10px; /* Adjusted to bottom */
+}
+
+.total-cost-text {
+  position: absolute;
+  bottom: 50px; /* Adjusted to be above the buttons */
+  text-align: center;
+  width: 100%;
+}
+
+.buttons-container {
+  position: absolute;
+  bottom: 10px; /* Adjusted to bottom */
+  display: flex;
+  justify-content: space-between;
+  width: 65%;
+  padding: 0 10px;
+}
+
+.buttons-container button {
+  flex-grow: 1;
+  margin: 0 5px; /* Space between buttons */
+}
+
+@media screen and (max-width: 768px) {
+  main {
+      flex-direction: column;
+      align-items: center;
+      height: auto;
+  }
+
+  section {
+      width: 90%;
+      margin-bottom: 1rem;
+  }
+
+  .buttons-container {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .buttons-container button {
+      width: 100%;
+      margin: 5px 0;
+  }
+}
