@@ -36,8 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const componentElem = document.createElement('div');
         componentElem.dataset.price = data.price;
         componentElem.innerHTML = `
+          <p>${data.component} / ${formatPrice(data.price)} CLP</p>
             <img src="${data.imageSrc}" alt="${data.component}">
-            <p>${data.component} / ${formatPrice(data.price)} CLP</p>
+
         `;
         componentElem.addEventListener('click', () => {
             componentElem.remove();
