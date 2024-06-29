@@ -10,15 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     components.forEach(component => {
         component.addEventListener('dragstart', dragStart);
-        component.addEventListener('click', () => {
-            const data = {
-                component: component.dataset.component,
-                price: component.dataset.price,
-                imageSrc: component.querySelector('img').src
-            };
-            addToAssembly(data);
-            animatePop(component);
-        });
+        component.addEventListener('click', handleClick);
+        const priceElem = component.querySelector('p:last-child');
+        const price = component.dataset.price;
+        priceElem.textContent = formatPrice(price);
     });
 
     assemblyCanvas.addEventListener('dragover', dragOver);
@@ -34,6 +29,16 @@ document.addEventListener('DOMContentLoaded', () => {
             price: this.dataset.price,
             imageSrc: this.querySelector('img').src
         }));
+    }
+
+    function handleClick() {
+        const data = {
+            component: this.dataset.component,
+            price: this.dataset.price,
+            imageSrc: this.querySelector('img').src
+        };
+        addToAssembly(data);
+        animatePop(this);
     }
 
     function dragOver(e) {
@@ -106,10 +111,4 @@ document.addEventListener('DOMContentLoaded', () => {
             component.classList.remove('pop');
         }, 300); // duration of the animation
     }
-
-    components.forEach(component => {
-        const priceElem = component.querySelector('p:last-child');
-        const price = component.dataset.price;
-        priceElem.textContent = formatPrice(price);
-    });
 });
