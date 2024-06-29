@@ -1,5 +1,5 @@
-body {
-  font-family: Arial, sans-serif;
+ody {
+  font-family: 'Roboto', Arial, sans-serif;
   margin: 0;
   padding: 0;
   display: flex;
@@ -21,18 +21,23 @@ main {
   justify-content: space-around;
   margin-top: 2rem;
   width: 90%;
-  height: 80vh; /* Adjusted height to utilize more space */
+  height: 80vh;
 }
 
 section {
   background-color: white;
   padding: 1rem;
   width: 30%;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative; /* Added for absolute positioning of buttons */
+  position: relative;
+  overflow-y: auto; /* Permitir desplazamiento vertical */
+}
+
+/* Ocultar la barra de desplazamiento en navegadores webkit (como Chrome y Safari) */
+section::-webkit-scrollbar {
+  display: none; /* Ocultar la barra de desplazamiento */
 }
 
 .category {
@@ -60,7 +65,12 @@ section {
   padding: 0.5rem;
   border-radius: 10px;
   margin-top: 0.5rem;
-  overflow-x: auto; /* Horizontal scroll for products */
+  overflow-x: auto; /* Permitir desplazamiento horizontal */
+}
+
+/* Ocultar la barra de desplazamiento en navegadores webkit (como Chrome y Safari) */
+.category-content::-webkit-scrollbar {
+  display: none; /* Ocultar la barra de desplazamiento */
 }
 
 .component {
@@ -85,25 +95,34 @@ section {
   border-radius: 10px;
 }
 
-#assembly-area, #preview {
+#assembly-area,
+#preview {
   flex-grow: 1;
-  overflow-y: auto; /* Vertical scroll for assembly and preview sections */
+  overflow-y: auto;
 }
 
-#assembly-canvas, #preview-canvas {
+#assembly-canvas,
+#preview-canvas {
   border: 1px solid #ffffff;
   height: 450px;
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Changed to flex-start */
+  justify-content: flex-start;
   flex-direction: column;
   transition: background-color 0.3s ease;
   width: 100%;
-  overflow-y: auto; /* Added vertical scroll for canvas sections */
+  overflow-y: auto; /* Permitir desplazamiento vertical */
   border-radius: 10px;
 }
 
-#assembly-canvas div, #preview-canvas div {
+/* Ocultar la barra de desplazamiento en navegadores webkit (como Chrome y Safari) */
+#assembly-canvas::-webkit-scrollbar,
+#preview-canvas::-webkit-scrollbar {
+  display: none; /* Ocultar la barra de desplazamiento */
+}
+
+#assembly-canvas div,
+#preview-canvas div {
   cursor: pointer;
   padding: 0.5rem;
   margin: 0.5rem;
@@ -115,11 +134,13 @@ section {
   align-items: center;
 }
 
-#assembly-canvas div:hover, #preview-canvas div:hover {
+#assembly-canvas div:hover,
+#preview-canvas div:hover {
   background-color: #eaeaea;
 }
 
-#assembly-canvas img, #preview-canvas img {
+#assembly-canvas img,
+#preview-canvas img {
   width: 100px;
   height: 100px;
   object-fit: cover;
@@ -135,6 +156,7 @@ button {
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-family: 'Roboto', Arial, sans-serif; /* Aplicar la fuente Roboto */
 }
 
 button:hover {
@@ -143,19 +165,19 @@ button:hover {
 
 #clear-assembly {
   position: absolute;
-  bottom: 10px; /* Adjusted to bottom */
+  bottom: 10px;
 }
 
 .total-cost-text {
   position: absolute;
-  bottom: 50px; /* Adjusted to be above the buttons */
+  bottom: 50px;
   text-align: center;
   width: 100%;
 }
 
 .buttons-container {
   position: absolute;
-  bottom: 10px; /* Adjusted to bottom */
+  bottom: 10px;
   display: flex;
   justify-content: space-between;
   width: 65%;
@@ -164,40 +186,40 @@ button:hover {
 
 .buttons-container button {
   flex-grow: 1;
-  margin: 0 5px; /* Space between buttons */
+  margin: 0 5px;
 }
 
 @media screen and (max-width: 768px) {
   main {
-      flex-direction: column;
-      align-items: center;
-      height: auto;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
   }
 
   section {
-      width: 90%;
-      margin-bottom: 1rem;
+    width: 90%;
+    margin-bottom: 1rem;
   }
 
   .buttons-container {
-      flex-direction: column;
-      align-items: center;
+    flex-direction: column;
+    align-items: center;
   }
 
   .buttons-container button {
-      width: 100%;
-      margin: 5px 0;
+    width: 100%;
+    margin: 5px 0;
   }
 
   #preview .total-cost-text {
-      bottom: 100px; /* Adjust to fit above stacked buttons */
+    bottom: 100px;
   }
 }
 
 @media screen and (min-width: 769px) {
   .category-content {
-      max-height: 300px; /* Adjust based on your design needs */
-      overflow-y: auto; /* Vertical scroll for products */
+    max-height: 300px;
+    overflow-y: auto;
   }
 }
 
@@ -212,7 +234,6 @@ button:hover {
   border-radius: 50px;
   text-align: center;
   font-size: 30px;
-  box-shadow: 2px 2px 3px #999;
   z-index: 100;
 }
 
@@ -220,20 +241,18 @@ button:hover {
   margin-top: 16px;
 }
 
-/* Existing styles... */
-
 .pop {
-    animation: pop-animation 0.3s ease-in-out;
+  animation: pop-animation 0.3s ease-in-out;
 }
 
 @keyframes pop-animation {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-    }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
