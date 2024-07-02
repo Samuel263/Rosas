@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen de Compra</title>
+    <link rel="stylesheet" href="ExperienciaDePagoEstilos.css">
+</head>
+<body>
+    <div class="container">
+        <div class="progress-bar">
+            <div class="step completed">1</div>
+            <div class="step active">2</div>
+            <div class="step">3</div>
+        </div>
+        <h2>Selecciona el método de entrega</h2>
+        <div class="delivery-method">
+            <!-- Aquí puedes agregar opciones de método de entrega -->
+            <label class="method">
+                <input type="radio" name="delivery" value="home-delivery">
+                <span>Despacho a Domicilio</span>
+                <p>Ingresa la dirección donde quieras recibir tu pedido</p>
+            </label>
+        </div>
+        <div class="order-summary">
+            <h3>Resumen de tu compra</h3>
+            <div id="product-list">
+                <!-- Aquí se agregarán dinámicamente los productos seleccionados -->
+            </div>
+            <div class="total">
+                <span>Total a pagar:</span>
+                <span id="total-amount"></span> <!-- Aquí se mostrará el total a pagar -->
+            </div>
+            <p>El costo de despacho se calculará cuando se seleccione el tipo de entrega.</p>
+            <button class="continue-button">Continuar</button>
+            <div class="guarantee">
+                <span>Pago 100% seguro</span>
+                <span>Garantía en tus productos</span>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const productList = document.getElementById('product-list');
+            const totalAmountElem = document.getElementById('total-amount');
+
+            // Función para obtener los productos seleccionados del localStorage
+            function getProductosSeleccionados() {
+                // Obtener los productos del localStorage
+                const productos = JSON.parse(localStorage.getItem('productosSeleccionados'));
+
+                if (!productos || productos.length === 0) {
+                    // No hay productos seleccionados, mostrar mensaje o manejar según necesites
+                    productList.innerHTML = '<p>No se han seleccionado productos.</p>';
+                    totalAmountElem.textContent = '$0 CLP';
+                } else {
+                    // Mostrar los productos seleccionados
+                    productos.forEach(producto => {
+                        const productDiv = document.createElement('div');
+                        productDiv.classList.add('product');
+
+                        const img = document.createElement('img');
+                        img.src = producto.imageSrc;
+                        img.alt = producto.component;
+                        productDiv.appendChild(img);
+
+                        const productDetails = document.createElement('div');
+                        productDetails.classList.add('product-details');
+
+                        const spanNombre = document.createElement('span');
+                        spanNombre.textContent = producto.component;
+                        productDetails.appendChild(spanNombre);
+
+                        const pDescripcion = document.createElement('p');
+                        pDescripcion.textContent = producto.descripcion;
+                        productDetails.appendChild(pDescripcion);
+
+                        const spanPrecio = document.createElement('span');
+                        spanPrecio.textContent = formatPrice(producto.price);
+                        productDetails.appendChild(spanPrecio);
+
+                        productDiv.appendChild(productDetails);
+
+                        productList.appendChild(productDiv);
+                    });
+
+                    // Calcular y mostrar el total a pagar
+                    const total = productos.reduce((accumulator, current) => accumulator + current.price, 0);
+                    totalAmountElem.textContent = formatPrice(total);
+                }
+            }
+
+            // Formato de precio
+            function formatPrice(price) {
+                return new Intl.NumberFormat('es-CL', {
+                    style: 'currency',
+                    currency: 'CLP',
+                    minimumFractionDigits: 0
+                }).format(price);
+            }
+
+            // Llamar a la función para obtener y mostrar los productos seleccionados
+            getProductosSeleccionados();
+        });
+    </script>
+</body>
+</html>
