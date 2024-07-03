@@ -19,7 +19,8 @@ main {
   display: flex;
   justify-content: space-around;
   margin-top: 2rem;
-  width: 90%;
+  width: 95%; /* Ajuste en el ancho */
+  max-width: 1200px; /* Ancho máximo para evitar estiramiento excesivo */
   height: 80vh;
 }
 
@@ -32,11 +33,6 @@ section {
   align-items: center;
   position: relative;
   overflow-y: auto; /* Permitir desplazamiento vertical */
-}
-
-/* Ocultar la barra de desplazamiento en navegadores webkit (como Chrome y Safari) */
-section::-webkit-scrollbar {
-  display: none; /* Ocultar la barra de desplazamiento */
 }
 
 .category {
@@ -65,11 +61,6 @@ section::-webkit-scrollbar {
   border-radius: 10px;
   margin-top: 0.5rem;
   overflow-x: auto; /* Permitir desplazamiento horizontal */
-}
-
-/* Ocultar la barra de desplazamiento en navegadores webkit (como Chrome y Safari) */
-.category-content::-webkit-scrollbar {
-  display: none; /* Ocultar la barra de desplazamiento */
 }
 
 .component {
@@ -114,12 +105,6 @@ section::-webkit-scrollbar {
   border-radius: 10px;
 }
 
-/* Ocultar la barra de desplazamiento en navegadores webkit (como Chrome y Safari) */
-#assembly-canvas::-webkit-scrollbar,
-#preview-canvas::-webkit-scrollbar {
-  display: none; /* Ocultar la barra de desplazamiento */
-}
-
 #assembly-canvas div,
 #preview-canvas div {
   cursor: pointer;
@@ -146,7 +131,6 @@ section::-webkit-scrollbar {
   border-radius: 10px;
 }
 
-/* Ejemplo de ajuste para botones */
 button {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
@@ -164,24 +148,12 @@ button:hover {
   background-color: #0F4F9A;
 }
 
-/* Ajuste para imágenes responsivas */
 .component img {
   max-width: 100%;
   height: auto;
 }
 
-/* Ajuste para tamaño flexible */
-main {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 2rem;
-  width: 95%; /* Ejemplo de ajuste en el ancho */
-  max-width: 1200px; /* Ajuste máximo para evitar que se estire demasiado */
-  height: 80vh;
-}
-
 @media screen and (max-width: 768px) {
-  /* Ajustes para pantallas más pequeñas */
   main {
     flex-direction: column;
     align-items: center;
@@ -191,6 +163,17 @@ main {
   section {
     width: 90%;
     margin-bottom: 1rem;
+  }
+
+  .category-content {
+    flex-wrap: wrap; /* Ajuste para envolver en pantallas pequeñas */
+    justify-content: center;
+    max-height: 300px; /* Limitar altura en pantallas pequeñas */
+    overflow-y: auto;
+  }
+
+  .component {
+    width: 40%; /* Ajuste para componentes en pantallas pequeñas */
   }
 
   .buttons-container {
@@ -202,41 +185,6 @@ main {
   .buttons-container button {
     width: 100%;
     margin: 10px 0;
-  }
-}
-
-
-@media screen and (max-width: 768px) {
-  main {
-    flex-direction: column;
-    align-items: center;
-    height: auto;
-  }
-
-  section {
-    width: 90%;
-    margin-bottom: 1rem;
-  }
-
-  .buttons-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .buttons-container button {
-    width: 100%;
-    margin: 10px 0;
-  }
-
-  #preview .total-cost-text {
-    bottom: 135px;
-  }
-}
-
-@media screen and (min-width: 769px) {
-  .category-content {
-    max-height: 300px;
-    overflow-y: auto;
   }
 }
 
@@ -274,24 +222,14 @@ main {
   }
 }
 
-.grey-button {
-  background-color: #f0f0f0;
-  color: #000000;
-}
-
-
+.grey-button,
 .grey-button2 {
   background-color: #f0f0f0;
   color: #000000;
 }
 
-
+.grey-button:hover,
 .grey-button2:hover {
-  background-color: #1871DC;
-  color: #f0f0f0;
-}
-
-.grey-button:hover {
   background-color: #1871DC;
   color: #f0f0f0;
 }
@@ -337,56 +275,4 @@ main {
   transition: background-color 0.3s ease;
   font-family: 'Roboto', Arial, sans-serif;
   border: 3px solid #000000;
-}
-
-button {
-  padding: 0.5rem 1rem;
-  min-width: 100px; /* Cambia a min-width para asegurar un tamaño mínimo */
-  width: auto; /* Permite que el ancho se ajuste automáticamente */
-}
-
-/* Ajuste para botones responsivos */
-@media screen and (min-width: 768px) {
-  button {
-    min-width: 150px; /* Ajuste para pantallas más grandes */
-  }
-}
-
-
-main {
-  width: 90%; /* Cambiar a porcentaje para un diseño más fluido */
-  max-width: 1200px; /* Ajuste máximo para evitar que se estire demasiado */
-  margin: 2rem auto; /* Centrar el contenido */
-}
-
-.section {
-  width: 100%; /* Asegurar que la sección ocupe todo el ancho disponible */
-  max-width: 800px; /* Ejemplo de anchura máxima para evitar que se expanda demasiado */
-}
-
-@media screen and (max-width: 768px) {
-  main {
-    flex-direction: column;
-    align-items: center;
-    height: auto;
-  }
-
-  section {
-    width: 90%;
-    margin-bottom: 1rem;
-  }
-
-  .buttons-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .buttons-container button {
-    width: 100%;
-    margin: 10px 0;
-  }
-}
-
-section {
-  flex: 1; /* Hacer que la sección ocupe el espacio disponible */
 }
