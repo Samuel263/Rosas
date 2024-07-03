@@ -166,10 +166,16 @@ button:hover {
 
 
 .total-cost-text {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
   position: absolute;
   bottom: 50px;
   text-align: center;
-  width: 100%;
+  width: auto;
+  color: white;
+  background-color: #000000;
+  border-radius: 100px;
+  height: auto;
 }
 
 
