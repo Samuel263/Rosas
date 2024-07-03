@@ -26,7 +26,7 @@ main {
 section {
   background-color: white;
   padding: 1rem;
-  width: 30%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -146,6 +146,7 @@ section::-webkit-scrollbar {
   border-radius: 10px;
 }
 
+/* Ejemplo de ajuste para botones */
 button {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
@@ -156,43 +157,54 @@ button {
   border-radius: 100px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-family: 'Roboto', Arial, sans-serif; /* Aplicar la fuente Roboto */
+  font-family: 'Roboto', Arial, sans-serif;
 }
 
 button:hover {
   background-color: #0F4F9A;
 }
 
-
-
-
-.total-cost-text {
-  margin-top: 1rem;
-  padding: 0.3rem 1rem;
-  position: absolute;
-  bottom: 50px;
-  text-align: center;
-  width: auto;
-  color: white;
-  background-color: #000000;
-  border-radius: 100px;
+/* Ajuste para imágenes responsivas */
+.component img {
+  max-width: 100%;
   height: auto;
 }
 
-
-.buttons-container {
-  position: absolute;
-  bottom: 10px;
+/* Ajuste para tamaño flexible */
+main {
   display: flex;
-  justify-content: space-between;
-  width: 65%;
-  padding: 0 10px;
+  justify-content: space-around;
+  margin-top: 2rem;
+  width: 95%; /* Ejemplo de ajuste en el ancho */
+  max-width: 1200px; /* Ajuste máximo para evitar que se estire demasiado */
+  height: 80vh;
 }
 
-.buttons-container button {
-  flex-grow: 1;
-  margin: 0 10px;
+@media screen and (max-width: 768px) {
+  /* Ajustes para pantallas más pequeñas */
+  main {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+  }
+
+  section {
+    width: 90%;
+    margin-bottom: 1rem;
+  }
+
+  .buttons-container {
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Ajuste para botones */
+  }
+
+  .buttons-container button {
+    width: 100%;
+    margin: 10px 0;
+  }
 }
+
 
 @media screen and (max-width: 768px) {
   main {
@@ -285,15 +297,10 @@ button:hover {
 }
 
 .price {
-  display: block;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  unicode-bidi: isolate;
-  color: #000000;
-  font-weight: bold;
-  font-size: 1.2em; /* Ajusta el tamaño según tus preferencias */
+  font-size: 20px;
+  line-height: 27px;
+  font-weight: 700;
+  color: #000;
 }
 
 .ItemName {
@@ -305,6 +312,7 @@ button:hover {
   -ms-line-clamp: 2;
   -webkit-line-clamp: 2;
   line-clamp: 2;
+  max-width: 100px;
   display: -webkit-box;
   display: box;
   word-wrap: break-word;
