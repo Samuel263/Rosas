@@ -329,11 +329,64 @@ main {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
   width: auto;
-  background-color: #000000;
-  color: white;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
   border: none;
   border-radius: 100px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-family: 'Roboto', Arial, sans-serif;
+  border: 3px solid #000000;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  min-width: 100px; /* Cambia a min-width para asegurar un tamaño mínimo */
+  width: auto; /* Permite que el ancho se ajuste automáticamente */
+}
+
+/* Ajuste para botones responsivos */
+@media screen and (min-width: 768px) {
+  button {
+    min-width: 150px; /* Ajuste para pantallas más grandes */
+  }
+}
+
+
+main {
+  width: 90%; /* Cambiar a porcentaje para un diseño más fluido */
+  max-width: 1200px; /* Ajuste máximo para evitar que se estire demasiado */
+  margin: 2rem auto; /* Centrar el contenido */
+}
+
+.section {
+  width: 100%; /* Asegurar que la sección ocupe todo el ancho disponible */
+  max-width: 800px; /* Ejemplo de anchura máxima para evitar que se expanda demasiado */
+}
+
+@media screen and (max-width: 768px) {
+  main {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+  }
+
+  section {
+    width: 90%;
+    margin-bottom: 1rem;
+  }
+
+  .buttons-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .buttons-container button {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+section {
+  flex: 1; /* Hacer que la sección ocupe el espacio disponible */
 }
