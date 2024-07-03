@@ -149,6 +149,7 @@ section::-webkit-scrollbar {
 button {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
+  width: auto;
   background-color: #1871DC;
   color: white;
   border: none;
@@ -167,7 +168,7 @@ button:hover {
 
 .total-cost-text {
   margin-top: 1rem;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 1rem;
   position: absolute;
   bottom: 50px;
   text-align: center;
@@ -281,4 +282,37 @@ button:hover {
 .grey-button:hover {
   background-color: #1871DC;
   color: #f0f0f0;
+}
+
+.price {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  unicode-bidi: isolate;
+  color: #000000;
+  font-weight: bold;
+  font-size: 1.2em; /* Ajusta el tamaño según tus preferencias */
+}
+
+.ItemName {
+  margin-top: 4px;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -ms-line-clamp: 2;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  display: -webkit-box;
+  display: box;
+  word-wrap: break-word;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
+  height: 43px;
+  font-size: 14px;
+  line-height: 21.5px;
+  font-weight: 700;
+  color: #000;
 }
