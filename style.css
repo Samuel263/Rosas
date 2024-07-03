@@ -324,3 +324,16 @@ main {
   font-weight: 700;
   color: #000;
 }
+
+.total-cost-text {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  width: auto;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Roboto', Arial, sans-serif;
+}
