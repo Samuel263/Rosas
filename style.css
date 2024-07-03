@@ -148,7 +148,6 @@ section::-webkit-scrollbar {
 
 /* Ejemplo de ajuste para botones */
 button {
-  margin-top: 1rem;
   padding: 0.5rem 1rem;
   width: auto;
   background-color: #1871DC;
