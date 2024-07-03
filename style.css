@@ -254,3 +254,25 @@ button:hover {
     transform: scale(1);
   }
 }
+
+.grey-button {
+  background-color: #f0f0f0;
+  color: #1871DC;
+}
+
+
+.grey-button2 {
+  background-color: #f0f0f0;
+  color: #1871DC;
+}
+
+
+.grey-button2:hover {
+  background-color: #1871DC;
+  color: #f0f0f0;
+}
+
+.grey-button:hover {
+  background-color: #1871DC;
+  color: #f0f0f0;
+}
