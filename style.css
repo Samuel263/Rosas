@@ -148,7 +148,7 @@ section::-webkit-scrollbar {
 
 /* Ejemplo de ajuste para botones */
 button {
-  padding: 0.5rem 1rem;
+  padding: 0.7rem 1rem;
   width: auto;
   background-color: #1871DC;
   color: white;
@@ -276,23 +276,27 @@ main {
 .grey-button {
   background-color: #f0f0f0;
   color: #000000;
+  padding: 0.7rem 1rem;
 }
 
 
 .grey-button2 {
   background-color: #f0f0f0;
   color: #000000;
+  padding: 0.7rem 1rem;
 }
 
 
 .grey-button2:hover {
   background-color: #1871DC;
   color: #f0f0f0;
+  padding: 0.7rem 1rem;
 }
 
 .grey-button:hover {
   background-color: #1871DC;
   color: #f0f0f0;
+  padding: 0.7rem 1rem;
 }
 
 .price {
