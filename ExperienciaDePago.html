@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Pago</title>
+    <link rel="stylesheet" href="ExperienciaDePagoEstilos.css">
+    <script src="https://kit.fontawesome.com/75234c80fb.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="progress-bar">
+            <div class="step completed">1</div>
+            <span class="arrow-icon"><i class="fas fa-arrow-right"></i></span>
+            <div class="step completed">2</div>
+            <span class="arrow-icon"><i class="fas fa-arrow-right"></i></span>
+            <div class="step active">3</div>
+        </div>
+        <h2>Formulario de Pago</h2>
+        <div class="payment-form">
+            <form id="payment-form">
+                <div class="input-group">
+                    <label for="card-name">Nombre en la Tarjeta</label>
+                    <input type="text" id="card-name" name="card-name" required>
+                </div>
+                <div class="input-group">
+                    <label for="card-number">Número de Tarjeta</label>
+                    <input type="text" id="card-number" name="card-number" required>
+                </div>
+                <div class="input-group">
+                    <label for="expiry-date">Fecha de Expiración</label>
+                    <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/AA" required>
+                </div>
+                <div class="input-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" name="cvv" required>
+                </div>
+                <div class="input-group">
+                    <label for="zip-code">Código Postal</label>
+                    <input type="text" id="zip-code" name="zip-code" required>
+                </div>
+                <button type="submit" class="btn">Pagar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('payment-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Pago realizado con éxito');
+        });
+    </script>
+</body>
+</html>

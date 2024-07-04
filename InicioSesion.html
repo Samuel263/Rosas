@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión</title>
+    <link rel="stylesheet" href="ExperienciaDePagoEstilos.css">
+    <script src="https://kit.fontawesome.com/75234c80fb.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container2">
+        <div class="progress-bar">
+            <div class="step active">1</div>
+            <span class="arrow-icon"><i class="fas fa-arrow-right"></i></span>
+            <div class="step">2</div>
+            <span class="arrow-icon"><i class="fas fa-arrow-right"></i></span>
+            <div class="step">3</div>
+        </div>
+        <h2>Inicio de Sesión</h2>
+        <div class="login-container">
+            <div class="existing-client">
+                <h3>¿Ya eres cliente? Ingresa con tu datos</h3>
+                <button id="login-btn">Inicia sesión</button>
+            </div>
+            <div class="new-client">
+                <h3>¿Todavía no tienes una cuenta?</h3>
+                <button id="guest-btn">Continuar como invitado</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginBtn = document.getElementById('login-btn');
+            const guestBtn = document.getElementById('guest-btn');
+            
+            loginBtn.addEventListener('click', function() {
+                window.location.href = 'TipoDeEntrega.html';
+            });
+            
+            guestBtn.addEventListener('click', function() {
+                window.location.href = 'TipoDeEntrega.html';
+            });
+        });
+    </script>
+</body>
+</html>
