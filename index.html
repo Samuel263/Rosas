@@ -106,7 +106,7 @@
                         <p class="price">$11900 CLP</p>
                     </div>
                     <div class="component" draggable="true" data-component="Peluche oso Vainilla" data-price="13900">
-                        <p>Peluche oso Vainilla</p>
+                        <p class="ItemName">Peluche oso Vainilla</p>
                         <img src="images/Peluche2.jpg" alt="Peluche oso Vainilla">
                         <p class="price">$13900 CLP</p>
                     </div>
@@ -125,17 +125,19 @@
             <div id="assembly-canvas">
                 <!-- Drop components here -->
             </div>
+            <p class="total-cost-text">Total a pagar: <span id="total-cost">0</span> CLP</p>
             <div class="buttons-container">
                 <button id="clear-assembly">Borrar pedido</button>
-                <button id="add-to-cart">Lo quiero</button>
-                <button id = "checkout"onclick="window.location.href = 'ExperienciaDePago.html';">pagar</button>
+                <!--<button id="add-to-cart">Lo quiero</button> -->
+                <button id = "checkout"onclick="window.location.href = 'ExperienciaDePago.html';">Continuar</button>
                 
                 
             </div>
-            <p class="total-cost-text">Total a pagar: <span id="total-cost">0</span> CLP</p>
+           
        </section>
        
     </main>
     <script src="script1.js"></script>
 </body>
 </html>
+
