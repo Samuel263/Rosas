@@ -32,19 +32,19 @@
                 </div>
                 <div id="roses" class="category-content">
                     <div class="component" draggable="true" data-component="Ramo Con 50 Rosas" data-price="85900">
-                        <p>Ramo Con 50 Rosas</p>
+                        <p class="ItemName">Ramo Con 50 Rosas</p>
                         <img src="images/Rosa1.jpg" alt="Ramo Con 50 Rosas">
-                        <p>$85900 CLP</p>
+                        <p class="price">$85900 CLP</p>
                     </div>
                     <div class="component" draggable="true" data-component="Ramo con 8 Girasoles" data-price="34900">
-                        <p>Ramo con 8 Girasoles</p>
+                        <p class="ItemName">Ramo con 8 Girasoles</p>
                         <img src="images/Rosa2.jpg" alt="Ramo con 8 Girasoles">
-                        <p>$34900 CLP</p>
+                        <p class="price">$34900 CLP</p>
                     </div>
                     <div class="component" draggable="true" data-component="Sombrerera con 40 Tulipanes" data-price="84900">
-                        <p>Sombrerera con 40 Tulipanes</p>
+                        <p class="ItemName">Sombrerera con 40 Tulipanes</p>
                         <img src="images/Rose3.jpg" alt="Rosa 3">
-                        <p>$84900 CLP</p>
+                        <p class="price">$84900 CLP</p>
                     </div>
                 </div>
             </div>
@@ -54,19 +54,19 @@
                 </div>
                 <div id="chocolates" class="category-content">
                     <div class="component" draggable="true" data-component="Ferrero Rocher" data-price="15900">
-                        <p>Ferrero Rocher</p>
+                        <p class="ItemName">Ferrero Rocher</p>
                         <img src="images/Chocolate1.jpg" alt="Ferrero Rocher">
-                        <p>$15900 CLP</p>
+                        <p class="price">$15900 CLP</p>
                     </div>
                     <div class="component" draggable="true" data-component="Valentte bombones" data-price="3900">
-                        <p>Valentte bombones</p>
+                        <p class="ItemName">Valentte bombones</p>
                         <img src="images/Chocolate2.jpg" alt="Valentte bombones">
-                        <p>$3900 CLP</p>
+                        <p class="price">$3900 CLP</p>
                     </div>
                     <div class="component" draggable="true" data-component="Valentte bombones" data-price="4900">
-                        <p>Valentte bombones</p>
+                        <p class="ItemName">Valentte bombones</p>
                         <img src="images/Chocolate3.jpg" alt="Valentte bombones">
-                        <p>$4900 CLP</p>
+                        <p class="price">$4900 CLP</p>
                     </div>
                 </div>
             </div>
@@ -77,19 +77,19 @@
                 </div>
                 <div id="peluches" class="category-content"> <!-- Cambiado el ID para que sea único -->
                     <div class="component" draggable="true" data-component="Peluche oso Amor" data-price="11900">
-                        <p>Peluche oso Amor</p>
+                        <p class="ItemName">Peluche oso Amor</p>
                         <img src="images/Peluche1.jpg" alt="Peluche oso Amor">
-                        <p>$11900 CLP</p>
+                        <p class="price">$11900 CLP</p>
                     </div>
                     <div class="component" draggable="true" data-component="Peluche oso Vainilla" data-price="13900">
-                        <p>Peluche oso Vainilla</p>
+                        <p class="ItemName">Peluche oso Vainilla</p>
                         <img src="images/Peluche2.jpg" alt="Peluche oso Vainilla">
-                        <p>$13900 CLP</p>
+                        <p class="price">$13900 CLP</p>
                     </div>
                     <div class="component" draggable="true" data-component="Peluche oso Enamorado" data-price="10900">
-                        <p>Peluche oso Enamorado</p>
+                        <p class="ItemName">Peluche oso Enamorado</p>
                         <img src="images/Peluche3.jpg" alt="Peluche oso Enamorado">
-                        <p>$10900 CLP</p>
+                        <p class="price">$10900 CLP</p>
                     </div>
                 </div>
             </div>
@@ -100,19 +100,19 @@
                 </div>
                 <div id="peluches" class="category-content"> <!-- Cambiado el ID para que sea único -->
                     <div class="component" draggable="true" data-component="Peluche oso Amor" data-price="11900">
-                        <p>Peluche oso Amor</p>
+                        <p class="ItemName">Peluche oso Amor</p>
                         <img src="images/Peluche1.jpg" alt="Peluche oso Amor">
-                        <p>$11900 CLP</p>
+                        <p class="price">$11900 CLP</p>
                     </div>
                     <div class="component" draggable="true" data-component="Peluche oso Vainilla" data-price="13900">
-                        <p>Peluche oso Vainilla</p>
+                        <p class="ItemName">Peluche oso Vainilla</p>
                         <img src="images/Peluche2.jpg" alt="Peluche oso Vainilla">
-                        <p>$13900 CLP</p>
+                        <p class="price">$13900 CLP</p>
                     </div>
                     <div class="component" draggable="true" data-component="Peluche oso Enamorado" data-price="10900">
-                        <p>Peluche oso Enamorado</p>
+                        <p class="ItemName">Peluche oso Enamorado</p>
                         <img src="images/Peluche3.jpg" alt="Peluche oso Enamorado">
-                        <p>$10900 CLP</p>
+                        <p class="price">$10900 CLP</p>
                     </div>
                 </div>
             </div>
@@ -124,14 +124,15 @@
             <div id="assembly-canvas">
                 <!-- Drop components here -->
             </div>
+            <p class="total-cost-text">Total a pagar: <span id="total-cost">0</span> CLP</p>
             <div class="buttons-container">
                 <button id="clear-assembly">Borrar pedido</button>
                 <button id="add-to-cart">Lo quiero</button>
-                <button id = "checkout"onclick="window.location.href = 'ExperienciaDePago1.html';">pagar</button>
+                <button id = "checkout"onclick="window.location.href = 'ExperienciaDePago1.html';">Continuar</button>
                 
                 
             </div>
-            <p class="total-cost-text">Total a pagar: <span id="total-cost">0</span> CLP</p>
+           
        </section>
        
     </main>
