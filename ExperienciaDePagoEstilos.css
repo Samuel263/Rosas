@@ -211,3 +211,10 @@ h3 {
   flex-direction: column;
   gap: 15px;
 }
+
+.fa-brands, .fab {
+    font-family: "Font Awesome 6 Brands";
+    font-weight: 400;
+    margin-right: 1rem;
+}
+
