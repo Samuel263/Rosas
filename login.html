@@ -21,6 +21,7 @@
                 <small class="error-message" id="password-error"></small>
             </div>
             <button type="submit" class="btn">Iniciar Sesión</button>
+            <button type="button" class="btn" id="google-login">Iniciar sesión con Google</button>
             <p>¿No tienes cuenta? <a href="register.html">Regístrate</a></p>
             <p><a href="forgot-password.html">¿Olvidaste tu contraseña?</a></p>
         </form>
@@ -28,11 +29,9 @@
 
     <!-- Inicializar Firebase -->
     <script type="module">
-        // Importar las funciones necesarias de los SDKs
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+        import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
-        // Configuración de Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyBsY-aL1y8ZSZSbfNIu5DwX0MpabBII8iA",
             authDomain: "samuelc-84809.firebaseapp.com",
@@ -43,11 +42,10 @@
             measurementId: "G-NZP5S4TSHP"
         };
 
-        // Inicializar Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
 
-        // Manejar el formulario de inicio de sesión
         document.getElementById('login-form').addEventListener('submit', async function(event) {
             event.preventDefault();
             const email = document.getElementById('email').value.toLowerCase();
@@ -69,6 +67,17 @@
                     document.getElementById('email-error').textContent = errorMessage;
                 }
                 document.getElementById('password-error').textContent = '';
+            }
+        });
+
+        document.getElementById('google-login').addEventListener('click', async function() {
+            try {
+                const result = await signInWithPopup(auth, provider);
+                alert('Inicio de sesión con Google exitoso');
+                window.location.href = 'TipoDeEntrega.html';
+            } catch (error) {
+                const errorMessage = error.message;
+                alert('Error al iniciar sesión con Google: ' + errorMessage);
             }
         });
     </script>
