@@ -164,6 +164,14 @@ h3 {
   justify-content: center;
 }
 
+.google-btn:hover {
+  background-color: #4285F4;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .google-btn img {
   margin-right: 10px;
 }
