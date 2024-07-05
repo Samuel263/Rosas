@@ -149,10 +149,23 @@ h3 {
   width: 100%;
   transition: background-color 0.3s ease;
   font-size: 16px;
+  margin-bottom: 10px; /* Añadido para dar espacio entre los botones */
 }
 
 .continue-button:hover, .btn:hover {
   background-color: #bb246d;
+}
+
+.google-btn {
+  background-color: #4285F4;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.google-btn img {
+  margin-right: 10px;
 }
 
 .guarantee {
