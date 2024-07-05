@@ -1,0 +1,316 @@
+/* Estilos generales para todo el documento */
+
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #000000; /* Fondo negro por defecto */
+    color: #ffffff; /* Color de texto blanco por defecto */
+    font-family: Arial, sans-serif; /* Tipografía general */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave al cambiar el modo */
+}
+
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.2); /* Fondo negro para la barra superior */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2; /* Asegúrate de que la barra superior esté sobre el canvas */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    backdrop-filter: blur(10px); /* Efecto de borrosidad */
+    
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #181818;
+    transition: .3s;
+    border-radius: 34px;
+    display: flex;
+    align-items: center; /* Centrar los iconos verticalmente */
+}
+
+.slider i {
+    font-size: 18px; /* Tamaño de los iconos */
+    margin: 0 5px; /* Espacio entre los iconos y el borde del slider */
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .3s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #00ffb3; /* Color verde cuando está activado el modo claro */
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Estilos para el formulario de registro */
+
+.register-container {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 300px;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.44); /* Fondo gris oscuro semi-transparente */
+    backdrop-filter: blur(10px); /* Efecto de borrosidad */
+    border-radius: 10px;
+}
+
+.register-container h2 {
+    margin-bottom: 20px;
+}
+
+.register-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.register-container form input,
+.register-container form textarea,
+.register-container form select {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.44); /* Fondo gris oscuro para los campos */
+    color: #ffffff;
+    font-size: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.register-container form button {
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background-color: #00ffb3; /* Color verde para el botón en modo oscuro */
+    color: #000000; /* Texto negro para el botón en modo oscuro */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: bold;
+}
+
+.register-container form button:hover {
+    background-color: #3bffc4; /* Color de fondo al pasar el mouse en modo oscuro */
+}
+
+.register-container p {
+    margin-top: 10px;
+    color: #999999; /* Color de texto gris claro */
+}
+
+.register-container p a {
+    color: #00ffb3; /* Color azul para el enlace en modo oscuro */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.register-container p a:hover {
+    color: #3bffc4; /* Color del enlace al pasar el mouse en modo oscuro */
+}
+
+/* Estilos para el modo claro */
+
+body.light-mode {
+    background-color: #ffffff; /* Fondo blanco para el modo claro */
+    color: #000000; /* Color de texto negro para el modo claro */
+}
+
+body.light-mode .topbar {
+    background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco para la barra superior */
+    backdrop-filter: blur(10px); /* Efecto de borrosidad */
+}
+
+body.light-mode .slider {
+    background-color: #eaeaea; /* Color de fondo del slider en modo claro */
+}
+
+body.light-mode .slider:before {
+    background-color: #181818; /* Color del botón dentro del slider en modo claro */
+}
+
+body.light-mode .register-container {
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente para el contenedor de registro en modo claro */
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode .register-container form input,
+body.light-mode .register-container form textarea,
+body.light-mode .register-container form select {
+    color: #000000; /* Texto negro para los campos en modo claro */
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente para el contenedor de inicio de sesión en modo claro */
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode .register-container form button {
+    background-color: #181818; /* Color gris oscuro para el botón en modo claro */
+    color: #ffffff; /* Texto blanco para el botón en modo claro */
+    
+}
+
+body.light-mode .register-container form button:hover {
+    background-color: #000000; /* Color de fondo al pasar el mouse en modo claro */
+}
+
+body.light-mode .register-container p a {
+    color: #181818; /* Color gris oscuro para el enlace en modo claro */
+}
+
+body.light-mode .register-container p a:hover {
+    color: #000000; /* Color del enlace al pasar el mouse en modo claro */
+}
+
+/* Estilos para el formulario de inicio de sesión */
+
+.login-container {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 300px;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.44); /* Fondo gris oscuro semi-transparente */
+    backdrop-filter: blur(10px); /* Efecto de borrosidad */
+    border-radius: 10px;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container form input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.44); /* Fondo gris oscuro para los campos */
+    color: #ffffff;
+    font-size: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.login-container form button {
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background-color: #00ffb3; /* Color verde para el botón en modo oscuro */
+    color: #000000; /* Texto negro para el botón en modo oscuro */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: bold;
+}
+
+.login-container form button:hover {
+    background-color: #3bffc4; /* Color de fondo al pasar el mouse en modo oscuro */
+}
+
+.login-container p {
+    margin-top: 10px;
+    color: #999999; /* Color de texto gris claro */
+}
+
+.login-container p a {
+    color: #00ffb3; /* Color azul para el enlace en modo oscuro */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.login-container p a:hover {
+    color: #3bffc4; /* Color del enlace al pasar el mouse en modo oscuro */
+}
+
+/* Estilos adicionales para el modo claro del formulario de inicio de sesión */
+
+body.light-mode .login-container {
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente para el contenedor de inicio de sesión en modo claro */
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode .login-container form input {
+    color: #000000; /* Texto negro para los campos en modo claro */
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente para el contenedor de inicio de sesión en modo claro */
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode .login-container form button {
+    background-color: #181818; /* Color gris oscuro para el botón en modo claro */
+    color: #ffffff; /* Texto blanco para el botón en modo claro */
+}
+
+body.light-mode .login-container form button:hover {
+    background-color: #000000; /* Color de fondo al pasar el mouse en modo claro */
+}
+
+body.light-mode .login-container p a {
+    color: #181818; /* Color gris oscuro para el enlace en modo claro */
+}
+
+body.light-mode .login-container p a:hover {
+    color: #000000; /* Color del enlace al pasar el mouse en modo claro */
+}
+
+
+body::after{
+    content: "";
+    position: absolute;
+    background-color: #ed2ff0;
+    width: 300px;
+    height: 300px;
+    left: 75%;
+    top: 20%;
+    filter: blur(200px);
+}
+
+body::before{
+    content: "";
+    position: absolute;
+    background-color: #22a8cd;
+    width: 300px;
+    height: 300px;
+    left: 10%;
+    top: 80%;
+    filter: blur(200px);
+}
