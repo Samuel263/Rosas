@@ -21,16 +21,15 @@
                 <small class="error-message" id="password-error"></small>
             </div>
             <button type="submit" class="btn">Registrarse</button>
+            <button type="button" class="btn" id="google-register">Registrarse con Google</button>
         </form>
     </div>
 
     <!-- Inicializar Firebase -->
     <script type="module">
-        // Importar las funciones necesarias de los SDKs
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
-        // Configuración de Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyBsY-aL1y8ZSZSbfNIu5DwX0MpabBII8iA",
             authDomain: "samuelc-84809.firebaseapp.com",
@@ -41,11 +40,10 @@
             measurementId: "G-NZP5S4TSHP"
         };
 
-        // Inicializar Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
 
-        // Manejar el formulario de registro
         document.getElementById('register-form').addEventListener('submit', async function(event) {
             event.preventDefault();
             const email = document.getElementById('email').value.toLowerCase();
@@ -65,6 +63,17 @@
                     document.getElementById('email-error').textContent = errorMessage;
                 }
                 document.getElementById('password-error').textContent = '';
+            }
+        });
+
+        document.getElementById('google-register').addEventListener('click', async function() {
+            try {
+                const result = await signInWithPopup(auth, provider);
+                alert('Registro con Google exitoso');
+                window.location.href = 'login.html';
+            } catch (error) {
+                const errorMessage = error.message;
+                alert('Error al registrarse con Google: ' + errorMessage);
             }
         });
     </script>
