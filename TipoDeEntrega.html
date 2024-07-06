@@ -24,21 +24,6 @@
                 <p>Ingresa la dirección donde quieras recibir tu pedido</p>
             </label>
         </div>
-
-        <!-- Formulario de ubicación para despacho a domicilio -->
-        <div id="delivery-form" style="display: none;">
-            <h3>Ingresa tu ubicación para despacho a domicilio</h3>
-            <form id="location-form">
-                <label for="region">Región:</label>
-                <input type="text" id="region" name="region" required><br><br>
-                <label for="comuna">Comuna:</label>
-                <input type="text" id="comuna" name="comuna" required><br><br>
-                <label for="direccion">Dirección:</label>
-                <input type="text" id="direccion" name="direccion" required><br><br>
-                <button type="submit" id="submit-location">Guardar Ubicación</button>
-            </form>
-        </div>
-
         <div class="order-summary">
             <h3>Resumen de tu compra</h3>
             <div id="product-list"></div>
@@ -60,12 +45,8 @@
             const productList = document.getElementById('product-list');
             const totalAmountElem = document.getElementById('total-amount');
             const continueToPaymentBtn = document.getElementById('continue-to-payment');
-            const deliveryMethodInput = document.querySelector('input[name="delivery"]');
-            const deliveryForm = document.getElementById('delivery-form');
-            const locationForm = document.getElementById('location-form');
 
             function getProductosSeleccionados() {
-                // Obtener productos del localStorage y mostrar en la lista
                 const productos = JSON.parse(localStorage.getItem('productosSeleccionados'));
 
                 if (!productos || productos.length === 0) {
@@ -75,17 +56,37 @@
                     productos.forEach(producto => {
                         const productDiv = document.createElement('div');
                         productDiv.classList.add('product');
-                        // Código para mostrar productos (imagen, nombre, descripción, precio)
+
+                        const img = document.createElement('img');
+                        img.src = producto.imageSrc;
+                        img.alt = producto.component;
+                        productDiv.appendChild(img);
+
+                        const productDetails = document.createElement('div');
+                        productDetails.classList.add('product-details');
+
+                        const spanNombre = document.createElement('span');
+                        spanNombre.textContent = producto.component;
+                        productDetails.appendChild(spanNombre);
+
+                        const pDescripcion = document.createElement('p');
+                        pDescripcion.textContent = producto.descripcion;
+                        productDetails.appendChild(pDescripcion);
+
+                        const spanPrecio = document.createElement('span');
+                        spanPrecio.textContent = formatPrice(producto.price);
+                        productDetails.appendChild(spanPrecio);
+
+                        productDiv.appendChild(productDetails);
                         productList.appendChild(productDiv);
                     });
-                    // Calcular y mostrar total a pagar
+
                     const total = productos.reduce((accumulator, current) => accumulator + current.price, 0);
                     totalAmountElem.textContent = formatPrice(total);
                 }
             }
 
             function formatPrice(price) {
-                // Función para formatear precio como moneda CLP
                 return new Intl.NumberFormat('es-CL', {
                     style: 'currency',
                     currency: 'CLP',
@@ -93,39 +94,6 @@
                 }).format(price);
             }
 
-            // Función para calcular costo de despacho según ubicación
-            function calcularCostoDespacho(region, comuna, direccion) {
-                // Implementa tu lógica aquí para calcular el costo
-                // Puedes utilizar Google Maps API u otra fuente para calcular la distancia o usar una tabla predefinida
-                // Por simplicidad, aquí solo retornamos un costo fijo de ejemplo
-                return 5000; // Ejemplo de costo fijo
-            }
-
-            // Mostrar formulario de ubicación al seleccionar "Despacho a domicilio"
-            deliveryMethodInput.addEventListener('change', function() {
-                if (this.value === 'home-delivery') {
-                    deliveryForm.style.display = 'block';
-                } else {
-                    deliveryForm.style.display = 'none';
-                }
-            });
-
-            // Guardar ubicación ingresada por el usuario
-            locationForm.addEventListener('submit', function(event) {
-                event.preventDefault();
-                const region = document.getElementById('region').value;
-                const comuna = document.getElementById('comuna').value;
-                const direccion = document.getElementById('direccion').value;
-                const costoDespacho = calcularCostoDespacho(region, comuna, direccion);
-
-                // Guardar en Firebase (implementación necesaria)
-                // Aquí deberías guardar esta información asociada al usuario en tu base de datos Firebase
-
-                // Redirigir al usuario a la página de pago
-                window.location.href = 'ExperienciaDePago.html';
-            });
-
-            // Inicializar la página
             getProductosSeleccionados();
 
             continueToPaymentBtn.addEventListener('click', function() {
