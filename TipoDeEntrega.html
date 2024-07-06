@@ -26,13 +26,15 @@
         </div>
         <div class="delivery-form" id="delivery-form" style="display: none;">
             <h3>Detalles de Despacho a Domicilio</h3>
-            <label for="region">Región:</label>
-            <select id="region">
-                <option value="santiago-centro">Santiago Centro</option>
-                <option value="santiago-norte">Santiago Norte</option>
-                <option value="santiago-sur">Santiago Sur</option>
-                <option value="santiago-este">Santiago Este</option>
-                <option value="santiago-oeste">Santiago Oeste</option>
+            <label for="commune">Comuna:</label>
+            <select id="commune">
+                <option value="las-condes">Las Condes</option>
+                <option value="providencia">Providencia</option>
+                <option value="nunoa">Ñuñoa</option>
+                <option value="santiago">Santiago</option>
+                <option value="vitacura">Vitacura</option>
+                <option value="la-florida">La Florida</option>
+                <option value="macul">Macul</option>
             </select>
             <p id="delivery-cost"></p>
         </div>
@@ -59,14 +61,16 @@
             const continueToPaymentBtn = document.getElementById('continue-to-payment');
             const homeDeliveryRadio = document.getElementById('home-delivery');
             const deliveryForm = document.getElementById('delivery-form');
-            const regionSelect = document.getElementById('region');
+            const communeSelect = document.getElementById('commune');
             const deliveryCostElem = document.getElementById('delivery-cost');
             const deliveryCosts = {
-                'santiago-centro': 0,
-                'santiago-norte': 2000,
-                'santiago-sur': 3000,
-                'santiago-este': 2500,
-                'santiago-oeste': 2000
+                'las-condes': 3000,
+                'providencia': 2500,
+                'nunoa': 2000,
+                'santiago': 1000,
+                'vitacura': 3500,
+                'la-florida': 3000,
+                'macul': 2000
             };
 
             function getProductosSeleccionados() {
@@ -123,11 +127,11 @@
                 updateTotalWithDelivery();
             });
 
-            regionSelect.addEventListener('change', updateTotalWithDelivery);
+            communeSelect.addEventListener('change', updateTotalWithDelivery);
 
             function updateTotalWithDelivery() {
-                const selectedRegion = regionSelect.value;
-                const deliveryCost = deliveryCosts[selectedRegion];
+                const selectedCommune = communeSelect.value;
+                const deliveryCost = deliveryCosts[selectedCommune];
                 deliveryCostElem.textContent = `Costo de despacho: ${formatPrice(deliveryCost)}`;
 
                 const productos = JSON.parse(localStorage.getItem('productosSeleccionados'));
@@ -141,8 +145,8 @@
             getProductosSeleccionados();
 
             continueToPaymentBtn.addEventListener('click', function() {
-                const selectedRegion = regionSelect.value;
-                localStorage.setItem('userRegion', selectedRegion);
+                const selectedCommune = communeSelect.value;
+                localStorage.setItem('userCommune', selectedCommune);
                 window.location.href = 'ExperienciaDePago.html';
             });
         });
