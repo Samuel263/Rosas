@@ -156,5 +156,56 @@
             });
         });
     </script>
+</head>
+<body>
+    <div class="container">
+        <div class="progress-bar">
+            <div class="step completed">1</div>
+            <span class="arrow-icon"><i class="fas fa-arrow-right"></i></span>
+            <div class="step active">2</div>
+            <span class="arrow-icon"><i class="fas fa-arrow-right"></i></span>
+            <div class="step">3</div>
+        </div>
+        <h2>Selecciona el método de entrega</h2>
+        <div class="delivery-method">
+            <label class="method">
+                <input type="radio" name="delivery" value="home-delivery" id="home-delivery">
+                <span>Despacho a Domicilio</span>
+                <p>Ingresa la dirección donde quieras recibir tu pedido</p>
+            </label>
+        </div>
+        <div class="delivery-form" id="delivery-form" style="display: none;">
+            <h3>Detalles de Despacho a Domicilio</h3>
+            <label for="commune">Comuna:</label>
+            <select id="commune">
+                <option value="las-condes">Las Condes</option>
+                <option value="providencia">Providencia</option>
+                <option value="nunoa">Ñuñoa</option>
+                <option value="santiago">Santiago</option>
+                <option value="vitacura">Vitacura</option>
+                <option value="la-florida">La Florida</option>
+                <option value="macul">Macul</option>
+                <option value="maipu">Maipú</option>
+                <option value="penalolen">Peñalolén</option>
+                <option value="pudahuel">Pudahuel</option>
+            </select>
+            <p id="delivery-cost"></p>
+        </div>
+        <div class="order-summary">
+            <h3>Resumen de tu compra</h3>
+            <div id="product-list"></div>
+            <div class="total">
+                <span>Total a pagar:</span>
+                <span id="total-amount"></span>
+            </div>
+            <p>El costo de despacho se calculará cuando se seleccione el tipo de entrega.</p>
+            <button class="continue-button" id="continue-to-payment">Continuar</button>
+            <div class="guarantee">
+                <span><i class="fas fa-shield-alt"></i> Pago 100% seguro</span>
+                <span><i class="fas fa-medal"></i> Garantía en tus productos</span>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
+
