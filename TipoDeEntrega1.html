@@ -19,10 +19,22 @@
         <h2>Selecciona el método de entrega</h2>
         <div class="delivery-method">
             <label class="method">
-                <input type="radio" name="delivery" value="home-delivery">
+                <input type="radio" name="delivery" value="home-delivery" id="home-delivery">
                 <span>Despacho a Domicilio</span>
                 <p>Ingresa la dirección donde quieras recibir tu pedido</p>
             </label>
+        </div>
+        <div class="delivery-form" id="delivery-form" style="display: none;">
+            <h3>Detalles de Despacho a Domicilio</h3>
+            <label for="region">Región:</label>
+            <select id="region">
+                <option value="santiago-centro">Santiago Centro</option>
+                <option value="santiago-norte">Santiago Norte</option>
+                <option value="santiago-sur">Santiago Sur</option>
+                <option value="santiago-este">Santiago Este</option>
+                <option value="santiago-oeste">Santiago Oeste</option>
+            </select>
+            <p id="delivery-cost"></p>
         </div>
         <div class="order-summary">
             <h3>Resumen de tu compra</h3>
@@ -45,6 +57,17 @@
             const productList = document.getElementById('product-list');
             const totalAmountElem = document.getElementById('total-amount');
             const continueToPaymentBtn = document.getElementById('continue-to-payment');
+            const homeDeliveryRadio = document.getElementById('home-delivery');
+            const deliveryForm = document.getElementById('delivery-form');
+            const regionSelect = document.getElementById('region');
+            const deliveryCostElem = document.getElementById('delivery-cost');
+            const deliveryCosts = {
+                'santiago-centro': 0,
+                'santiago-norte': 2000,
+                'santiago-sur': 3000,
+                'santiago-este': 2500,
+                'santiago-oeste': 2000
+            };
 
             function getProductosSeleccionados() {
                 const productos = JSON.parse(localStorage.getItem('productosSeleccionados'));
@@ -53,6 +76,7 @@
                     productList.innerHTML = '<p>No se han seleccionado productos.</p>';
                     totalAmountElem.textContent = '$0 CLP';
                 } else {
+                    productList.innerHTML = '';
                     productos.forEach(producto => {
                         const productDiv = document.createElement('div');
                         productDiv.classList.add('product');
@@ -94,12 +118,35 @@
                 }).format(price);
             }
 
+            homeDeliveryRadio.addEventListener('change', function() {
+                deliveryForm.style.display = 'block';
+                updateTotalWithDelivery();
+            });
+
+            regionSelect.addEventListener('change', updateTotalWithDelivery);
+
+            function updateTotalWithDelivery() {
+                const selectedRegion = regionSelect.value;
+                const deliveryCost = deliveryCosts[selectedRegion];
+                deliveryCostElem.textContent = `Costo de despacho: ${formatPrice(deliveryCost)}`;
+
+                const productos = JSON.parse(localStorage.getItem('productosSeleccionados'));
+                if (productos) {
+                    const total = productos.reduce((accumulator, current) => accumulator + current.price, 0);
+                    const totalWithDelivery = total + deliveryCost;
+                    totalAmountElem.textContent = formatPrice(totalWithDelivery);
+                }
+            }
+
             getProductosSeleccionados();
 
             continueToPaymentBtn.addEventListener('click', function() {
+                const selectedRegion = regionSelect.value;
+                localStorage.setItem('userRegion', selectedRegion);
                 window.location.href = 'ExperienciaDePago.html';
             });
         });
     </script>
 </body>
 </html>
+
