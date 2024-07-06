@@ -6,56 +6,27 @@
     <title>Resumen de Compra</title>
     <link rel="stylesheet" href="ExperienciaDePagoEstilos.css">
     <script src="https://kit.fontawesome.com/75234c80fb.js" crossorigin="anonymous"></script>
-</head>
-<body>
-    <div class="container">
-        <div class="progress-bar">
-            <div class="step completed">1</div>
-            <span class="arrow-icon"><i class="fas fa-arrow-right"></i></span>
-            <div class="step active">2</div>
-            <span class="arrow-icon"><i class="fas fa-arrow-right"></i></span>
-            <div class="step">3</div>
-        </div>
-        <h2>Selecciona el método de entrega</h2>
-        <div class="delivery-method">
-            <label class="method">
-                <input type="radio" name="delivery" value="home-delivery" id="home-delivery">
-                <span>Despacho a Domicilio</span>
-                <p>Ingresa la dirección donde quieras recibir tu pedido</p>
-            </label>
-        </div>
-        <div class="delivery-form" id="delivery-form" style="display: none;">
-            <h3>Detalles de Despacho a Domicilio</h3>
-            <label for="commune">Comuna:</label>
-            <select id="commune">
-                <option value="las-condes">Las Condes</option>
-                <option value="providencia">Providencia</option>
-                <option value="nunoa">Ñuñoa</option>
-                <option value="santiago">Santiago</option>
-                <option value="vitacura">Vitacura</option>
-                <option value="la-florida">La Florida</option>
-                <option value="macul">Macul</option>
-            </select>
-            <p id="delivery-cost"></p>
-        </div>
-        <div class="order-summary">
-            <h3>Resumen de tu compra</h3>
-            <div id="product-list"></div>
-            <div class="total">
-                <span>Total a pagar:</span>
-                <span id="total-amount"></span>
-            </div>
-            <p>El costo de despacho se calculará cuando se seleccione el tipo de entrega.</p>
-            <button class="continue-button" id="continue-to-payment">Continuar</button>
-            <div class="guarantee">
-                <span><i class="fas fa-shield-alt"></i> Pago 100% seguro</span>
-                <span><i class="fas fa-medal"></i> Garantía en tus productos</span>
-            </div>
-        </div>
-    </div>
-    <script src="script1.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBsY-aL1y8ZSZSbfNIu5DwX0MpabBII8iA",
+            authDomain: "samuelc-84809.firebaseapp.com",
+            projectId: "samuelc-84809",
+            storageBucket: "samuelc-84809.appspot.com",
+            messagingSenderId: "819870940737",
+            appId: "1:819870940737:web:1b0f853cf4a5ff013ed0c0",
+            measurementId: "G-NZP5S4TSHP"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        document.addEventListener('DOMContentLoaded', async function() {
             const productList = document.getElementById('product-list');
             const totalAmountElem = document.getElementById('total-amount');
             const continueToPaymentBtn = document.getElementById('continue-to-payment');
@@ -70,7 +41,10 @@
                 'santiago': 1000,
                 'vitacura': 3500,
                 'la-florida': 3000,
-                'macul': 2000
+                'macul': 2000,
+                'maipu': 4000,
+                'penalolen': 3000,
+                'pudahuel': 3500
             };
 
             function getProductosSeleccionados() {
@@ -122,6 +96,19 @@
                 }).format(price);
             }
 
+            async function loadUserPreferences(user) {
+                const userDoc = await getDoc(doc(db, 'users', user.uid));
+                if (userDoc.exists()) {
+                    const userData = userDoc.data();
+                    if (userData.deliveryMethod === 'home-delivery') {
+                        homeDeliveryRadio.checked = true;
+                        deliveryForm.style.display = 'block';
+                        communeSelect.value = userData.commune;
+                        updateTotalWithDelivery();
+                    }
+                }
+            }
+
             homeDeliveryRadio.addEventListener('change', function() {
                 deliveryForm.style.display = 'block';
                 updateTotalWithDelivery();
@@ -142,15 +129,32 @@
                 }
             }
 
+            async function saveUserPreferences(user) {
+                const selectedCommune = communeSelect.value;
+                const deliveryMethod = homeDeliveryRadio.checked ? 'home-delivery' : null;
+                await setDoc(doc(db, 'users', user.uid), {
+                    deliveryMethod: deliveryMethod,
+                    commune: selectedCommune
+                }, { merge: true });
+            }
+
             getProductosSeleccionados();
 
-            continueToPaymentBtn.addEventListener('click', function() {
-                const selectedCommune = communeSelect.value;
-                localStorage.setItem('userCommune', selectedCommune);
-                window.location.href = 'ExperienciaDePago.html';
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    await loadUserPreferences(user);
+
+                    continueToPaymentBtn.addEventListener('click', async function() {
+                        await saveUserPreferences(user);
+                        window.location.href = 'ExperienciaDePago.html';
+                    });
+                } else {
+                    continueToPaymentBtn.addEventListener('click', function() {
+                        window.location.href = 'ExperienciaDePago.html';
+                    });
+                }
             });
         });
     </script>
 </body>
 </html>
-
