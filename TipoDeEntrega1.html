@@ -19,20 +19,9 @@
         <h2>Selecciona el método de entrega</h2>
         <div class="delivery-method">
             <label class="method">
-                <input type="radio" name="delivery" value="home-delivery" id="home-delivery">
+                <input type="radio" name="delivery" value="home-delivery">
                 <span>Despacho a Domicilio</span>
-                <p>Ingresa la dirección donde quieras recibir tu pedido:</p>
-                <form id="delivery-form" style="display: none;">
-                    <select id="region" name="region">
-                        <option value="Santiago Centro">Santiago Centro</option>
-                        <option value="Providencia">Providencia</option>
-                        <option value="Las Condes">Las Condes</option>
-                        <!-- Agrega más opciones según necesites -->
-                    </select>
-                    <label for="comuna">Comuna:</label>
-                    <input type="text" id="comuna" name="comuna">
-                    <button type="submit">Guardar Ubicación</button>
-                </form>
+                <p>Ingresa la dirección donde quieras recibir tu pedido</p>
             </label>
         </div>
         <div class="order-summary">
@@ -50,26 +39,12 @@
             </div>
         </div>
     </div>
-    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js"></script>
+    <script src="script1.js"></script>
     <script>
-        // Inicialización de Firebase (reemplaza con tu configuración)
-        const firebaseConfig = {
-            apiKey: "AIzaSyBsY-aL1y8ZSZSbfNIu5DwX0MpabBII8iA",
-            authDomain: "samuelc-84809.firebaseapp.com",
-            projectId: "samuelc-84809",
-            storageBucket: "samuelc-84809.appspot.com",
-            messagingSenderId: "819870940737",
-            appId: "1:819870940737:web:1b0f853cf4a5ff013ed0c0",
-            measurementId: "G-NZP5S4TSHP"
-        };
-        firebase.initializeApp(firebaseConfig);
-
         document.addEventListener('DOMContentLoaded', function() {
             const productList = document.getElementById('product-list');
             const totalAmountElem = document.getElementById('total-amount');
             const continueToPaymentBtn = document.getElementById('continue-to-payment');
-            const deliveryForm = document.getElementById('delivery-form');
 
             function getProductosSeleccionados() {
                 const productos = JSON.parse(localStorage.getItem('productosSeleccionados'));
@@ -118,30 +93,6 @@
                     minimumFractionDigits: 0
                 }).format(price);
             }
-
-            function guardarUbicacion(event) {
-                event.preventDefault();
-                const region = document.getElementById('region').value;
-                const comuna = document.getElementById('comuna').value;
-
-                // Guardar ubicación en Firebase
-                const user = firebase.auth().currentUser;
-                if (user) {
-                    firebase.firestore().collection('usuarios').doc(user.uid).set({
-                        region: region,
-                        comuna: comuna
-                    }, { merge: true })
-                    .then(function() {
-                        alert('Ubicación guardada exitosamente');
-                        deliveryForm.style.display = 'none'; // Ocultar formulario después de guardar
-                    })
-                    .catch(function(error) {
-                        console.error('Error al guardar ubicación:', error);
-                    });
-                }
-            }
-
-            deliveryForm.addEventListener('submit', guardarUbicacion);
 
             getProductosSeleccionados();
 
