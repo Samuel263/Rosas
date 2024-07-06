@@ -31,10 +31,9 @@
     </div>
 
     <!-- Inicializar Firebase -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
-
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js"></script>
+    <script>
         const firebaseConfig = {
             apiKey: "AIzaSyBsY-aL1y8ZSZSbfNIu5DwX0MpabBII8iA",
             authDomain: "samuelc-84809.firebaseapp.com",
@@ -44,10 +43,9 @@
             appId: "1:819870940737:web:1b0f853cf4a5ff013ed0c0",
             measurementId: "G-NZP5S4TSHP"
         };
+        firebase.initializeApp(firebaseConfig);
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const provider = new GoogleAuthProvider();
+        const auth = firebase.auth();
 
         document.getElementById('login-form').addEventListener('submit', async function(event) {
             event.preventDefault();
@@ -55,7 +53,7 @@
             const password = document.getElementById('password').value;
 
             try {
-                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const userCredential = await auth.signInWithEmailAndPassword(email, password);
                 alert('Inicio de sesión exitoso');
                 window.location.href = 'TipoDeEntrega.html';
             } catch (error) {
@@ -75,7 +73,8 @@
 
         document.getElementById('google-login').addEventListener('click', async function() {
             try {
-                const result = await signInWithPopup(auth, provider);
+                const provider = new firebase.auth.GoogleAuthProvider();
+                await auth.signInWithPopup(provider);
                 alert('Inicio de sesión con Google exitoso');
                 window.location.href = 'TipoDeEntrega.html';
             } catch (error) {
@@ -86,3 +85,4 @@
     </script>
 </body>
 </html>
+
