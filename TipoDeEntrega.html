@@ -6,12 +6,6 @@
     <title>Resumen de Compra</title>
     <link rel="stylesheet" href="ExperienciaDePagoEstilos.css">
     <script src="https://kit.fontawesome.com/75234c80fb.js" crossorigin="anonymous"></script>
-    <!-- Firebase App (the core Firebase SDK) -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-    <!-- Firebase Auth SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
-    <!-- Firebase Firestore SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
 </head>
 <body>
     <div class="container">
@@ -41,9 +35,6 @@
                 <option value="vitacura">Vitacura</option>
                 <option value="la-florida">La Florida</option>
                 <option value="macul">Macul</option>
-                <option value="maipu">Maipú</option>
-                <option value="penalolen">Peñalolén</option>
-                <option value="pudahuel">Pudahuel</option>
             </select>
             <p id="delivery-cost"></p>
         </div>
@@ -64,22 +55,7 @@
     </div>
     <script src="script1.js"></script>
     <script>
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_AUTH_DOMAIN",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
-
-        // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-
-        document.addEventListener('DOMContentLoaded', async function() {
+        document.addEventListener('DOMContentLoaded', function() {
             const productList = document.getElementById('product-list');
             const totalAmountElem = document.getElementById('total-amount');
             const continueToPaymentBtn = document.getElementById('continue-to-payment');
@@ -94,10 +70,7 @@
                 'santiago': 1000,
                 'vitacura': 3500,
                 'la-florida': 3000,
-                'macul': 2000,
-                'maipu': 4000,
-                'penalolen': 3000,
-                'pudahuel': 3500
+                'macul': 2000
             };
 
             function getProductosSeleccionados() {
@@ -149,22 +122,6 @@
                 }).format(price);
             }
 
-            async function loadUserPreferences() {
-                const user = auth.currentUser;
-                if (user) {
-                    const userDoc = await db.collection('users').doc(user.uid).get();
-                    if (userDoc.exists) {
-                        const userData = userDoc.data();
-                        if (userData.deliveryMethod === 'home-delivery') {
-                            homeDeliveryRadio.checked = true;
-                            deliveryForm.style.display = 'block';
-                            communeSelect.value = userData.commune;
-                            updateTotalWithDelivery();
-                        }
-                    }
-                }
-            }
-
             homeDeliveryRadio.addEventListener('change', function() {
                 deliveryForm.style.display = 'block';
                 updateTotalWithDelivery();
@@ -185,27 +142,14 @@
                 }
             }
 
-            async function saveUserPreferences() {
-                const user = auth.currentUser;
-                if (user) {
-                    const selectedCommune = communeSelect.value;
-                    const deliveryMethod = homeDeliveryRadio.checked ? 'home-delivery' : null;
-                    await db.collection('users').doc(user.uid).set({
-                        deliveryMethod: deliveryMethod,
-                        commune: selectedCommune
-                    }, { merge: true });
-                }
-            }
-
             getProductosSeleccionados();
-            await loadUserPreferences();
 
-            continueToPaymentBtn.addEventListener('click', async function() {
-                await saveUserPreferences();
+            continueToPaymentBtn.addEventListener('click', function() {
+                const selectedCommune = communeSelect.value;
+                localStorage.setItem('userCommune', selectedCommune);
                 window.location.href = 'ExperienciaDePago.html';
             });
         });
     </script>
 </body>
 </html>
-
