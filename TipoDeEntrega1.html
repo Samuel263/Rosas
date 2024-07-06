@@ -19,26 +19,23 @@
         <h2>Selecciona el método de entrega</h2>
         <div class="delivery-method">
             <label class="method">
-                <input type="radio" name="delivery" value="home-delivery">
+                <input type="radio" name="delivery" value="home-delivery" id="home-delivery-radio">
                 <span>Despacho a Domicilio</span>
-                <p>Ingresa la dirección donde quieras recibir tu pedido</p>
+                <p>Ingresa la dirección donde quieras recibir tu pedido:</p>
+                <div id="delivery-form" style="display: none;">
+                    <select id="region-selector">
+                        <option value="">Selecciona tu región</option>
+                        <option value="santiago">Santiago</option>
+                        <!-- Otras regiones si es necesario -->
+                    </select>
+                    <select id="comuna-selector">
+                        <option value="">Selecciona tu comuna</option>
+                        <!-- Opciones de comunas según la región seleccionada -->
+                    </select>
+                    <p>Costo adicional por distancia: <span id="additional-cost">$0 CLP</span></p>
+                </div>
             </label>
         </div>
-
-        <!-- Formulario de ubicación para despacho a domicilio -->
-        <div id="delivery-form" style="display: none;">
-            <h3>Ingresa tu ubicación para despacho a domicilio</h3>
-            <form id="location-form">
-                <label for="region">Región:</label>
-                <input type="text" id="region" name="region" required><br><br>
-                <label for="comuna">Comuna:</label>
-                <input type="text" id="comuna" name="comuna" required><br><br>
-                <label for="direccion">Dirección:</label>
-                <input type="text" id="direccion" name="direccion" required><br><br>
-                <button type="submit" id="submit-location">Guardar Ubicación</button>
-            </form>
-        </div>
-
         <div class="order-summary">
             <h3>Resumen de tu compra</h3>
             <div id="product-list"></div>
@@ -54,18 +51,32 @@
             </div>
         </div>
     </div>
-    <script src="script1.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js"></script>
     <script>
+        // Configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyBsY-aL1y8ZSZSbfNIu5DwX0MpabBII8iA",
+            authDomain: "samuelc-84809.firebaseapp.com",
+            projectId: "samuelc-84809",
+            storageBucket: "samuelc-84809.appspot.com",
+            messagingSenderId: "819870940737",
+            appId: "1:819870940737:web:1b0f853cf4a5ff013ed0c0",
+            measurementId: "G-NZP5S4TSHP"
+        };
+        firebase.initializeApp(firebaseConfig);
+
         document.addEventListener('DOMContentLoaded', function() {
             const productList = document.getElementById('product-list');
             const totalAmountElem = document.getElementById('total-amount');
             const continueToPaymentBtn = document.getElementById('continue-to-payment');
-            const deliveryMethodInput = document.querySelector('input[name="delivery"]');
+            const homeDeliveryRadio = document.getElementById('home-delivery-radio');
             const deliveryForm = document.getElementById('delivery-form');
-            const locationForm = document.getElementById('location-form');
+            const regionSelector = document.getElementById('region-selector');
+            const comunaSelector = document.getElementById('comuna-selector');
+            const additionalCostElem = document.getElementById('additional-cost');
 
             function getProductosSeleccionados() {
-                // Obtener productos del localStorage y mostrar en la lista
                 const productos = JSON.parse(localStorage.getItem('productosSeleccionados'));
 
                 if (!productos || productos.length === 0) {
@@ -75,17 +86,37 @@
                     productos.forEach(producto => {
                         const productDiv = document.createElement('div');
                         productDiv.classList.add('product');
-                        // Código para mostrar productos (imagen, nombre, descripción, precio)
+
+                        const img = document.createElement('img');
+                        img.src = producto.imageSrc;
+                        img.alt = producto.component;
+                        productDiv.appendChild(img);
+
+                        const productDetails = document.createElement('div');
+                        productDetails.classList.add('product-details');
+
+                        const spanNombre = document.createElement('span');
+                        spanNombre.textContent = producto.component;
+                        productDetails.appendChild(spanNombre);
+
+                        const pDescripcion = document.createElement('p');
+                        pDescripcion.textContent = producto.descripcion;
+                        productDetails.appendChild(pDescripcion);
+
+                        const spanPrecio = document.createElement('span');
+                        spanPrecio.textContent = formatPrice(producto.price);
+                        productDetails.appendChild(spanPrecio);
+
+                        productDiv.appendChild(productDetails);
                         productList.appendChild(productDiv);
                     });
-                    // Calcular y mostrar total a pagar
+
                     const total = productos.reduce((accumulator, current) => accumulator + current.price, 0);
                     totalAmountElem.textContent = formatPrice(total);
                 }
             }
 
             function formatPrice(price) {
-                // Función para formatear precio como moneda CLP
                 return new Intl.NumberFormat('es-CL', {
                     style: 'currency',
                     currency: 'CLP',
@@ -93,40 +124,28 @@
                 }).format(price);
             }
 
-            // Función para calcular costo de despacho según ubicación
-            function calcularCostoDespacho(region, comuna, direccion) {
-                // Implementa tu lógica aquí para calcular el costo
-                // Puedes utilizar Google Maps API u otra fuente para calcular la distancia o usar una tabla predefinida
-                // Por simplicidad, aquí solo retornamos un costo fijo de ejemplo
-                return 5000; // Ejemplo de costo fijo
-            }
+            getProductosSeleccionados();
 
-            // Mostrar formulario de ubicación al seleccionar "Despacho a domicilio"
-            deliveryMethodInput.addEventListener('change', function() {
-                if (this.value === 'home-delivery') {
+            homeDeliveryRadio.addEventListener('change', function() {
+                if (this.checked) {
                     deliveryForm.style.display = 'block';
                 } else {
                     deliveryForm.style.display = 'none';
+                    additionalCostElem.textContent = '$0 CLP';
                 }
             });
 
-            // Guardar ubicación ingresada por el usuario
-            locationForm.addEventListener('submit', function(event) {
-                event.preventDefault();
-                const region = document.getElementById('region').value;
-                const comuna = document.getElementById('comuna').value;
-                const direccion = document.getElementById('direccion').value;
-                const costoDespacho = calcularCostoDespacho(region, comuna, direccion);
-
-                // Guardar en Firebase (implementación necesaria)
-                // Aquí deberías guardar esta información asociada al usuario en tu base de datos Firebase
-
-                // Redirigir al usuario a la página de pago
-                window.location.href = 'ExperienciaDePago.html';
+            regionSelector.addEventListener('change', function() {
+                // Aquí deberías tener lógica para cargar las comunas según la región seleccionada
+                // Puedes implementarlo usando opciones hardcoded o consultando alguna base de datos externa
+                // También debes calcular el costo adicional basado en la comuna seleccionada
+                // Por simplicidad, usaré solo un ejemplo con costo adicional fijo
+                if (comunaSelector.value) {
+                    additionalCostElem.textContent = '$5000 CLP'; // Ejemplo de costo adicional
+                } else {
+                    additionalCostElem.textContent = '$0 CLP';
+                }
             });
-
-            // Inicializar la página
-            getProductosSeleccionados();
 
             continueToPaymentBtn.addEventListener('click', function() {
                 window.location.href = 'ExperienciaDePago.html';
