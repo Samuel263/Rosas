@@ -19,21 +19,20 @@
         <h2>Selecciona el método de entrega</h2>
         <div class="delivery-method">
             <label class="method">
-                <input type="radio" name="delivery" value="home-delivery" id="home-delivery-radio">
+                <input type="radio" name="delivery" value="home-delivery" id="home-delivery">
                 <span>Despacho a Domicilio</span>
                 <p>Ingresa la dirección donde quieras recibir tu pedido:</p>
-                <div id="delivery-form" style="display: none;">
-                    <select id="region-selector">
-                        <option value="">Selecciona tu región</option>
-                        <option value="santiago">Santiago</option>
-                        <!-- Otras regiones si es necesario -->
+                <form id="delivery-form" style="display: none;">
+                    <select id="region" name="region">
+                        <option value="Santiago Centro">Santiago Centro</option>
+                        <option value="Providencia">Providencia</option>
+                        <option value="Las Condes">Las Condes</option>
+                        <!-- Agrega más opciones según necesites -->
                     </select>
-                    <select id="comuna-selector">
-                        <option value="">Selecciona tu comuna</option>
-                        <!-- Opciones de comunas según la región seleccionada -->
-                    </select>
-                    <p>Costo adicional por distancia: <span id="additional-cost">$0 CLP</span></p>
-                </div>
+                    <label for="comuna">Comuna:</label>
+                    <input type="text" id="comuna" name="comuna">
+                    <button type="submit">Guardar Ubicación</button>
+                </form>
             </label>
         </div>
         <div class="order-summary">
@@ -54,7 +53,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js"></script>
     <script>
-        // Configuración de Firebase
+        // Inicialización de Firebase (reemplaza con tu configuración)
         const firebaseConfig = {
             apiKey: "AIzaSyBsY-aL1y8ZSZSbfNIu5DwX0MpabBII8iA",
             authDomain: "samuelc-84809.firebaseapp.com",
@@ -70,11 +69,7 @@
             const productList = document.getElementById('product-list');
             const totalAmountElem = document.getElementById('total-amount');
             const continueToPaymentBtn = document.getElementById('continue-to-payment');
-            const homeDeliveryRadio = document.getElementById('home-delivery-radio');
             const deliveryForm = document.getElementById('delivery-form');
-            const regionSelector = document.getElementById('region-selector');
-            const comunaSelector = document.getElementById('comuna-selector');
-            const additionalCostElem = document.getElementById('additional-cost');
 
             function getProductosSeleccionados() {
                 const productos = JSON.parse(localStorage.getItem('productosSeleccionados'));
@@ -124,28 +119,31 @@
                 }).format(price);
             }
 
+            function guardarUbicacion(event) {
+                event.preventDefault();
+                const region = document.getElementById('region').value;
+                const comuna = document.getElementById('comuna').value;
+
+                // Guardar ubicación en Firebase
+                const user = firebase.auth().currentUser;
+                if (user) {
+                    firebase.firestore().collection('usuarios').doc(user.uid).set({
+                        region: region,
+                        comuna: comuna
+                    }, { merge: true })
+                    .then(function() {
+                        alert('Ubicación guardada exitosamente');
+                        deliveryForm.style.display = 'none'; // Ocultar formulario después de guardar
+                    })
+                    .catch(function(error) {
+                        console.error('Error al guardar ubicación:', error);
+                    });
+                }
+            }
+
+            deliveryForm.addEventListener('submit', guardarUbicacion);
+
             getProductosSeleccionados();
-
-            homeDeliveryRadio.addEventListener('change', function() {
-                if (this.checked) {
-                    deliveryForm.style.display = 'block';
-                } else {
-                    deliveryForm.style.display = 'none';
-                    additionalCostElem.textContent = '$0 CLP';
-                }
-            });
-
-            regionSelector.addEventListener('change', function() {
-                // Aquí deberías tener lógica para cargar las comunas según la región seleccionada
-                // Puedes implementarlo usando opciones hardcoded o consultando alguna base de datos externa
-                // También debes calcular el costo adicional basado en la comuna seleccionada
-                // Por simplicidad, usaré solo un ejemplo con costo adicional fijo
-                if (comunaSelector.value) {
-                    additionalCostElem.textContent = '$5000 CLP'; // Ejemplo de costo adicional
-                } else {
-                    additionalCostElem.textContent = '$0 CLP';
-                }
-            });
 
             continueToPaymentBtn.addEventListener('click', function() {
                 window.location.href = 'ExperienciaDePago.html';
