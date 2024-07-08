@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const clearAssemblyBtn = document.getElementById('clear-assembly');
     const checkoutBtn = document.getElementById('checkout');
 
+    // Cargar componentes desde localStorage al cargar la página
+    loadComponentsFromLocalStorage();
+
     components.forEach(component => {
         component.addEventListener('dragstart', dragStart);
         component.addEventListener('click', handleClick);
@@ -19,13 +22,12 @@ document.addEventListener('DOMContentLoaded', function() {
     assemblyCanvas.addEventListener('drop', drop);
 
     clearAssemblyBtn.addEventListener('click', clearAssembly);
-    // No need to change addToCartBtn event listener
 
     // Actualizamos el estado del botón "Pagar" inicialmente
     updateCheckoutButton();
 
     function updateCheckoutButton() {
-        if (assemblyCanvas.children.length === 0 && previewCanvas.children.length === 0) {
+        if (assemblyCanvas.children.length === 0) {
             // No hay productos, desactivamos el botón
             checkoutBtn.disabled = true;
         } else {
@@ -54,10 +56,9 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('productosSeleccionados', JSON.stringify(components));
 
             // Navegar a la página de pago
-            window.location.href = 'InicioSesion.html';
+            window.location.href = 'InicioSesion1.html';
         }
     });
-    
 
     function dragStart(e) {
         e.dataTransfer.setData('text/plain', JSON.stringify({
@@ -92,17 +93,18 @@ document.addEventListener('DOMContentLoaded', function() {
         componentElem.dataset.price = data.price;
         componentElem.innerHTML = `
             <img src="${data.imageSrc}" alt="${data.component}">
-            <p>${data.component} - ${formatPrice(data.price)}</p>
+            <p>${data.component} ${formatPrice(data.price)}</p>
         `;
         componentElem.addEventListener('click', () => {
             componentElem.remove();
             updateTotalCost();
-            updatePreview();
+            updateCheckoutButton(); // Actualizamos el estado del botón "Pagar"
+            syncLocalStorage(); // Sincronizar datos al eliminar componente
         });
         assemblyCanvas.appendChild(componentElem);
         updateTotalCost();
-        updatePreview();
         updateCheckoutButton(); // Actualizamos el estado del botón "Pagar"
+        syncLocalStorage(); // Sincronizar datos al añadir componente
     }
 
     function updateTotalCost() {
@@ -113,18 +115,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         const formattedTotal = formatPrice(total);
         totalCostElem.textContent = formattedTotal;
-        finalTotalCostElem.textContent = formattedTotal;
-    }
-
-    function updatePreview() {
-        previewCanvas.innerHTML = assemblyCanvas.innerHTML;
     }
 
     function clearAssembly() {
         assemblyCanvas.innerHTML = '';
         updateTotalCost();
-        updatePreview();
         updateCheckoutButton(); // Actualizamos el estado del botón "Pagar"
+        syncLocalStorage(); // Sincronizar datos al limpiar ensamblaje
     }
 
     function formatPrice(price) {
@@ -141,6 +138,24 @@ document.addEventListener('DOMContentLoaded', function() {
             component.classList.remove('pop');
         }, 300); // duration of the animation
     }
+
+    function syncLocalStorage() {
+        const components = [];
+        assemblyCanvas.querySelectorAll('div').forEach(componentElem => {
+            components.push({
+                component: componentElem.querySelector('p').textContent.split(' - ')[0],
+                price: parseInt(componentElem.dataset.price, 10),
+                imageSrc: componentElem.querySelector('img').src,
+                descripcion: "Descripción del producto" // Añade la descripción que consideres necesaria
+            });
+        });
+        localStorage.setItem('productosSeleccionados', JSON.stringify(components));
+    }
+
+    function loadComponentsFromLocalStorage() {
+        const storedComponents = JSON.parse(localStorage.getItem('productosSeleccionados')) || [];
+        storedComponents.forEach(data => {
+            addToAssembly(data);
+        });
+    }
 });
-
-
