@@ -21,10 +21,10 @@ class Node {
     }
 
     draw = () => {
-        ctxBackground.beginPath();
-        ctxBackground.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctxBackground.fillStyle = this.color;
-        ctxBackground.fill();
+        Background.beginPath();
+        Background.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        Background.fillStyle = this.color;
+        Background.fill();
     };
 
     update = () => {
@@ -44,11 +44,11 @@ class Line {
     }
 
     draw = () => {
-        ctxBackground.beginPath();
-        ctxBackground.moveTo(this.nodeA.x, this.nodeA.y);
-        ctxBackground.lineTo(this.nodeB.x, this.nodeB.y);
-        ctxBackground.strokeStyle = this.color;
-        ctxBackground.stroke();
+        Background.beginPath();
+        Background.moveTo(this.nodeA.x, this.nodeA.y);
+        Background.lineTo(this.nodeB.x, this.nodeB.y);
+        Background.strokeStyle = this.color;
+        Background.stroke();
     };
 }
 
@@ -62,7 +62,7 @@ const createNodes = () => {
 };
 
 const animate = () => {
-    ctxBackground.clearRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
+    Background.clearRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
 
     nodes.forEach(node => {
         node.update();
