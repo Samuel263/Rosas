@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
         componentElem.dataset.price = data.price;
         componentElem.innerHTML = `
             <img src="${data.imageSrc}" alt="${data.component}">
-            <p>${data.component} ${formatPrice(data.price)}</p>
+            <p>${data.component}: ${formatPrice(data.price)}</p>
         `;
         componentElem.addEventListener('click', () => {
             componentElem.remove();
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const components = [];
         assemblyCanvas.querySelectorAll('div').forEach(componentElem => {
             components.push({
-                component: componentElem.querySelector('p').textContent.split(' - ')[0],
+                component: componentElem.querySelector('p').textContent.split(': ')[0],
                 price: parseInt(componentElem.dataset.price, 10),
                 imageSrc: componentElem.querySelector('img').src,
                 descripcion: "Descripción del producto" // Añade la descripción que consideres necesaria
