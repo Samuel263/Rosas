@@ -6,11 +6,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #A1FBED;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='100%25' height='100%25'%3E%3Cdefs  data-stroke-max-alt='95'%3E%3Cpattern id='p' width='100' height='100' patternUnits='userSpaceOnUse' patternTransform='rotate(70) '%3E%3Ccircle data-color='fill' fill='%2370F7BD' cx='50' cy='50' r='50'%3E%3C/circle%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23p)' width='100%25' height='100%25'%3E%3C/rect%3E%3C/svg%3E");
-  background-size: cover;
-  background-position: center;
-  background-repeat: repeat-y;
+  background-color: #000000;
 }
 
 .container, .container2 {
@@ -24,6 +20,18 @@ body {
 
 .container2 {
   max-width: 500px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 300px;
+  padding: 40px;
+  background-color: rgba(0, 0, 0, 0.44); /* Fondo gris oscuro semi-transparente */
+  backdrop-filter: blur(10px); /* Efecto de borrosidad */
+  border-radius: 10px;
+  align-content: center;
 }
 
 .progress-bar {
@@ -59,7 +67,7 @@ body {
 h2 {
   text-align: center;
   margin-bottom: 20px;
-  color: #333;
+  color: rgb(255, 255, 255);
 }
 
 h3 {
@@ -140,11 +148,11 @@ h3 {
 }
 
 .continue-button, .btn {
-  background-color: #d13065;
-  color: #FFFFFF;
+  background-color: #00ffb3;
+  color: #000000;
   padding: 10px 20px;
   border: none;
-  border-radius: 100px;
+  border-radius: 10px;
   cursor: pointer;
   width: 100%;
   transition: background-color 0.3s ease;
@@ -153,20 +161,20 @@ h3 {
 }
 
 .continue-button:hover, .btn:hover {
-  background-color: #bb246d;
+  background-color: #3bffc4;
 }
 
 .google-btn {
-  background-color: #4285F4;
-  color: #FFFFFF;
+  background-color: #00ffb3;
+  color: #000000;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .google-btn:hover {
-  background-color: #4285F4;
-  color: #FFFFFF;
+  background-color: #3bffc4;
+  color: #000000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -200,10 +208,16 @@ h3 {
 }
 
 .input-group input {
-  width: 100%;
+  margin-bottom: 15px;
   padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.44); /* Fondo gris oscuro para los campos */
+  color: #ffffff;
+  font-size: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+
 }
 
 .payment-form form {
@@ -218,3 +232,26 @@ h3 {
     margin-right: 1rem;
 }
 
+
+
+body::after{
+  content: "";
+  position: absolute;
+  background-color: #ed2ff0;
+  width: 300px;
+  height: 300px;
+  left: 75%;
+  top: 20%;
+  filter: blur(200px);
+}
+
+body::before{
+  content: "";
+  position: absolute;
+  background-color: #22a8cd;
+  width: 300px;
+  height: 300px;
+  left: 10%;
+  top: 80%;
+  filter: blur(200px);
+}
