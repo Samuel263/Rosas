@@ -204,7 +204,7 @@ h3 {
 .input-group label {
   display: block;
   margin-bottom: 5px;
-  color: #1111;
+  color: rgba(210, 210, 210, 0.067);
 }
 
 .input-group input {
