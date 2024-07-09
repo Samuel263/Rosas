@@ -341,3 +341,14 @@ main {
   transition: background-color 0.3s ease;
   font-family: 'Roboto', Arial, sans-serif;
 }
+
+
+#backgroundCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Asegura que esté detrás de todo el contenido */
+    pointer-events: none; /* Evita que el canvas intercepte clics */
+    width: 100%; /* O ajusta según tus necesidades */
+    height: 100%; /* O ajusta según tus necesidades */
+}
