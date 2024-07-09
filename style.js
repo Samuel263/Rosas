@@ -1,5 +1,10 @@
 const backgroundCanvas = document.getElementById('backgroundCanvas');
-const Background = backgroundCanvas.getContext('2d');
+document.addEventListener('DOMContentLoaded', function() {
+    const backgroundCanvas = document.getElementById('backgroundCanvas');
+    const Background = backgroundCanvas.getContext('2d');
+    // Aquí puedes comenzar a usar el contexto 2D para dibujar en el canvas
+});
+
 const body = document.body;
 
 backgroundCanvas.width = window.innerWidth;
