@@ -1,5 +1,5 @@
 const backgroundCanvas = document.getElementById('backgroundCanvas');
-const ctxBackground = backgroundCanvas.getContext('2d');
+const Background = backgroundCanvas.getContext('2d');
 const body = document.body;
 
 backgroundCanvas.width = window.innerWidth;
