@@ -10,7 +10,7 @@ background-color: #000000;
 }
 
 header {
-  background-color: #d13065;
+  background-color: #461046;
   color: white;
   width: 100%;
   text-align: center;
@@ -46,7 +46,7 @@ section::-webkit-scrollbar {
 }
 
 .category-header {
-  background-color: #d13065;
+  background-color: #461046;
   padding: 0.5rem;
   text-align: center;
   border-radius: 10px;
@@ -151,7 +151,7 @@ section::-webkit-scrollbar {
 button {
   padding: 0.7rem 1rem;
   width: auto;
-  background-color: #d13065;
+  background-color: #461046;
   color: white;
   border: none;
   border-radius: 100px;
@@ -289,13 +289,13 @@ main {
 
 
 .grey-button2:hover {
-  background-color: #d13065;
+  background-color: #461046;
   color: #f0f0f0;
   padding: 0.7rem 1rem;
 }
 
 .grey-button:hover {
-  background-color: #d13065;
+  background-color: #461046;
   color: #f0f0f0;
   padding: 0.7rem 1rem;
 }
