@@ -10,12 +10,13 @@ body {
 }
 
 .container, .container2 {
-  background-color: #FFFFFF;
   padding: 20px;
   width: 90%;
   max-width: 800px;
+  background-color: rgba(0, 0, 0, 0.44); /* Fondo gris oscuro semi-transparente */
+  backdrop-filter: blur(10px); /* Efecto de borrosidad */
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .container2 {
@@ -45,7 +46,7 @@ body {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #FFFFFF;
+  background-color: #000000;
   color: #C7CED1;
   display: flex;
   justify-content: center;
@@ -71,7 +72,7 @@ h2 {
 }
 
 h3 {
-  color: #555;
+  color: rgb(255, 255, 255);
   margin-bottom: 20px;
 }
 
@@ -82,9 +83,10 @@ h3 {
 }
 
 .existing-client, .new-client, .delivery-method .method, .order-summary, .payment-form {
-  background-color: #F9F9F9;
+  background-color: #000000;
   padding: 20px;
   border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .delivery-method {
