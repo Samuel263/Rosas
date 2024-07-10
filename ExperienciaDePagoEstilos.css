@@ -144,6 +144,8 @@ h3 {
   justify-content: space-between;
   margin-bottom: 20px;
   color: #00ffb3;
+  font-size: x-large;
+  font-weight: bold;
 }
 
 .total span {
@@ -261,8 +263,4 @@ body::before{
 
 p {
   color: #ffff
-}
-
-span {
-    color: white;
 }
