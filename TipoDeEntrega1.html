@@ -16,16 +16,23 @@
             <span class="arrow-icon"><i class="fas fa-arrow-right"></i></span>
             <div class="step">3</div>
         </div>
-        <h2>Entrega a Domicilio</h2>
+        <h2>Selecciona el método de entrega</h2>
         <div class="delivery-method">
             <label class="method">
                 <input type="radio" name="delivery" value="home-delivery" id="home-delivery">
                 <span>Despacho a Domicilio</span>
-                <p>Ingresa la dirección donde recibirás tu pedido</p>
+                <p class="UpperText">Ingresa la dirección donde quieras recibir tu pedido</p>
             </label>
         </div>
         <div class="delivery-form" id="delivery-form" style="display: none;">
-            <h3>Detalles de Despacho a Domicilio</h3>
+            <h3 class="HeadText">Detalles de Despacho a Domicilio</h3>
+            <div class="input-group">
+                <input type="Calle" id="Calle" placeholder="* Calle Ej: Almirante Latorre 240" required>
+                <input type="Numero" id="Numero" placeholder="* Numero Ej: 280" required>
+                <input type="Depto" id="Depto" placeholder="* Depto / Oficina / Nº Casa" required>
+                <input type="Numero" id="ExtraInfo" placeholder="Información Adicional" required>
+                <input type="Numero" id="ExtraInfo" placeholder="* Nombre y Apellido, quien recibe el detalle" required>
+            </div>
             <label for="commune">Comuna:</label>
             <select id="commune">
                 <option value="las-condes">Las Condes</option>
@@ -84,6 +91,7 @@
                 <option value="linares">Linares</option>
                 <option value="curico">Curicó</option>
             </select>
+            
             <p id="delivery-cost"></p>
         </div>
         <div class="order-summary">
@@ -251,4 +259,3 @@
     </script>
 </body>
 </html>
-
