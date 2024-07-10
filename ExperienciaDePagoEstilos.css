@@ -210,18 +210,37 @@ h3 {
   display: block;
   margin-bottom: 5px;
   color: rgba(255, 255, 255);
+display: inline;
+
 }
 
 .input-group input {
   margin-bottom: 15px;
-  padding: 10px;
+  padding: 20px;
   border: none;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.44); /* Fondo gris oscuro para los campos */
   color: #ffffff;
   font-size: 16px;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  width: 100%;
+  width: 43%;
+  
+
+
+}
+
+select#commune {
+  margin-bottom: 15px;
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.44); /* Fondo gris oscuro para los campos */
+  color: #ffffff;
+  font-size: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 35%;
+  
+
 
 }
 
@@ -267,4 +286,13 @@ p {
 
 .HeadText {
   color: yellow;
+}
+
+.UpperText {
+  font-weight: bold;
+  align-self: center;
+}
+
+div#delivery-form {
+  color: white;
 }
