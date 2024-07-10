@@ -264,3 +264,7 @@ body::before{
 p {
   color: #ffff
 }
+
+.HeadText {
+  color: yellow;
+}
