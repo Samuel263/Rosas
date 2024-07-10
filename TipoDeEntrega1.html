@@ -35,6 +35,54 @@
                 <option value="vitacura">Vitacura</option>
                 <option value="la-florida">La Florida</option>
                 <option value="macul">Macul</option>
+                <!-- Aquí van las demás comunas -->
+                <option value="huechuraba">Huechuraba</option>
+                <option value="lo-barnechea">Lo Barnechea</option>
+                <option value="san-joaquin">San Joaquín</option>
+                <option value="estacion-central">Estación Central</option>
+                <option value="cerro-navia">Cerro Navia</option>
+                <option value="quinta-normal">Quinta Normal</option>
+                <option value="san-miguel">San Miguel</option>
+                <option value="conchali">Conchalí</option>
+                <option value="renca">Renca</option>
+                <option value="independencia">Independencia</option>
+                <option value="san-ramon">San Ramón</option>
+                <option value="la-cisterna">La Cisterna</option>
+                <option value="la-pintana">La Pintana</option>
+                <option value="quilicura">Quilicura</option>
+                <option value="penalolen">Peñalolén</option>
+                <option value="pedro-aguirre-cerda">Pedro Aguirre Cerda</option>
+                <option value="lo-prado">Lo Prado</option>
+                <option value="pudahuel">Pudahuel</option>
+                <option value="el-bosque">El Bosque</option>
+                <option value="la-granja">La Granja</option>
+                <option value="lo-espejo">Lo Espejo</option>
+                <option value="cerrillos">Cerrillos</option>
+                <option value="renca">Renca</option>
+                <option value="padre-hurtado">Padre Hurtado</option>
+                <option value="calera-de-tango">Calera de Tango</option>
+                <option value="talagante">Talagante</option>
+                <option value="san-bernardo">San Bernardo</option>
+                <option value="puente-alto">Puente Alto</option>
+                <option value="melipilla">Melipilla</option>
+                <option value="lampa">Lampa</option>
+                <option value="buin">Buin</option>
+                <option value="colina">Colina</option>
+                <option value="peñaflor">Peñaflor</option>
+                <option value="melipilla">Melipilla</option>
+                <option value="isla-de-maipo">Isla de Maipo</option>
+                <option value="la-reina">La Reina</option>
+                <option value="paine">Paine</option>
+                <option value="talagante">Talagante</option>
+                <option value="pirque">Pirque</option>
+                <option value="curacavi">Curacaví</option>
+                <option value="san-antonio">San Antonio</option>
+                <option value="casablanca">Casablanca</option>
+                <option value="villa-alemana">Villa Alemana</option>
+                <option value="quillota">Quillota</option>
+                <option value="calera">Calera</option>
+                <option value="linares">Linares</option>
+                <option value="curico">Curicó</option>
             </select>
             <p id="delivery-cost"></p>
         </div>
@@ -63,15 +111,64 @@
             const deliveryForm = document.getElementById('delivery-form');
             const communeSelect = document.getElementById('commune');
             const deliveryCostElem = document.getElementById('delivery-cost');
-            const deliveryCosts = {
-                'las-condes': 3000,
-                'providencia': 2500,
-                'nunoa': 2000,
-                'santiago': 1000,
-                'vitacura': 3500,
-                'la-florida': 3000,
-                'macul': 2000
+
+            // Distancias en kilómetros desde Santiago Centro
+            const distancesFromSantiago = {
+                'las-condes': 10,
+                'providencia': 5,
+                'nunoa': 7,
+                'santiago': 0,
+                'vitacura': 12,
+                'la-florida': 15,
+                'macul': 8,
+                'huechuraba': 15,
+                'lo-barnechea': 20,
+                'san-joaquin': 4,
+                'estacion-central': 4,
+                'cerro-navia': 10,
+                'quinta-normal': 6,
+                'san-miguel': 5,
+                'conchali': 10,
+                'renca': 14,
+                'independencia': 3,
+                'san-ramon': 12,
+                'la-cisterna': 7,
+                'la-pintana': 14,
+                'quilicura': 18,
+                'penalolen': 12,
+                'pedro-aguirre-cerda': 9,
+                'lo-prado': 5,
+                'pudahuel': 15,
+                'el-bosque': 9,
+                'la-granja': 10,
+                'lo-espejo': 7,
+                'cerrillos': 12,
+                'padre-hurtado': 34,
+                'calera-de-tango': 28,
+                'talagante': 29,
+                'san-bernardo': 22,
+                'puente-alto': 21,
+                'melipilla': 56,
+                'lampa': 31,
+                'buin': 28,
+                'colina': 29,
+                'peñaflor': 32,
+                'isla-de-maipo': 33,
+                'la-reina': 6,
+                'paine': 38,
+                'pirque': 29,
+                'curacavi': 57,
+                'san-antonio': 111,
+                'casablanca': 88,
+                'villa-alemana': 118,
+                'quillota': 125,
+                'calera': 118,
+                'linares': 303,
+                'curico': 193
             };
+
+            // Precio por kilómetro
+            const pricePerKilometer = 500; // CLP
 
             function getProductosSeleccionados() {
                 const productos = JSON.parse(localStorage.getItem('productosSeleccionados'));
@@ -131,7 +228,8 @@
 
             function updateTotalWithDelivery() {
                 const selectedCommune = communeSelect.value;
-                const deliveryCost = deliveryCosts[selectedCommune];
+                const distance = distancesFromSantiago[selectedCommune];
+                const deliveryCost = distance * pricePerKilometer;
                 deliveryCostElem.textContent = `Costo de despacho: ${formatPrice(deliveryCost)}`;
 
                 const productos = JSON.parse(localStorage.getItem('productosSeleccionados'));
@@ -153,4 +251,3 @@
     </script>
 </body>
 </html>
-
