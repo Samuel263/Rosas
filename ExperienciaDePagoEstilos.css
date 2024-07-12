@@ -300,3 +300,7 @@ span {
   color: white;
   align-self: center;
 }
+
+a {
+  color: yellow;
+}
