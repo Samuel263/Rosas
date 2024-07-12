@@ -207,40 +207,38 @@ h3 {
 }
 
 .input-group label {
-  display: block;
-  margin-bottom: 5px;
-  color: rgba(255, 255, 255);
-display: inline;
+  margin-bottom: 15px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.44); /* Fondo gris oscuro para los campos */
+    color: #ffffff;
+    font-size: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 
 }
 
 .input-group input {
   margin-bottom: 15px;
-  padding: 20px;
-  border: none;
-  border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.44); /* Fondo gris oscuro para los campos */
-  color: #ffffff;
-  font-size: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  width: 43%;
-  
-
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.44); /* Fondo gris oscuro para los campos */
+    color: #ffffff;
+    font-size: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 
 }
 
 select#commune {
   margin-bottom: 15px;
-  padding: 20px;
+  padding: 10px;
   border: none;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.44); /* Fondo gris oscuro para los campos */
   color: #ffffff;
   font-size: 16px;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  width: 35%;
-  
-
 
 }
 
@@ -298,7 +296,7 @@ div#delivery-form {
 }
 
 span {
-  color: white;
   font-weight: bold;
+  color: white;
   align-self: center;
 }
