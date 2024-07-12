@@ -14,12 +14,15 @@
     
     <header>
         <h1>Detallitos</h1>
+        <input type="text" id="searchInput" placeholder="Buscar productos...">
     </header>
     <main>
+        
         <section id="components-library">
+            
             <div class="button-container">
-                <button onclick="window.location.href = 'index1.html';">Detalles</button>
-                <button onclick="window.location.href = 'index.html';" class="grey-button">Personaliza tu Detalle</button>
+                <button onclick="window.location.href = 'index1.html';" class="grey-button">Detalles</button>
+                <button onclick="window.location.href = 'index.html';">Personaliza tu Detalle</button>
             </div>
             <h2>Una nueva Experiencia</h2>
             
@@ -95,21 +98,21 @@
                 <div class="category-header">
                     <h3>Globos</h3>
                 </div>
-                <div id="peluches" class="category-content"> <!-- Cambiado el ID para que sea único -->
-                    <div class="component" draggable="true" data-component="Peluche oso Amor" data-price="11900">
+                <div id="globos" class="category-content"> <!-- Cambiado el ID para que sea único -->
+                    <div class="component" draggable="true" data-component="Globo Rojo" data-price="500">
                         <p class="ItemName">Arreglo 1</p>
-                        <img src="images/Peluche1.jpg" alt="Peluche oso Amor">
-                        <p class="price">$11900 CLP</p>
+                        <img src="images/Globo1.jpg" alt="Globo Rojo">
+                        <p class="price">$500 CLP</p>
                     </div>
-                    <div class="component" draggable="true" data-component="Peluche oso Vainilla" data-price="13900">
+                    <div class="component" draggable="true" data-component="Globo Azul" data-price="550">
                         <p class="ItemName">Arreglo 2</p>
-                        <img src="images/Peluche2.jpg" alt="Peluche oso Vainilla">
-                        <p class="price">$13900 CLP</p>
+                        <img src="images/Globo2.jpg" alt="Globo Azul">
+                        <p class="price">$550 CLP</p>
                     </div>
-                    <div class="component" draggable="true" data-component="Peluche oso Enamorado" data-price="10900">
+                    <div class="component" draggable="true" data-component="Globo Amarillo" data-price="600">
                         <p class="ItemName">Arreglo 3</p>
-                        <img src="images/Peluche3.jpg" alt="Peluche oso Enamorado">
-                        <p class="price">$10900 CLP</p>
+                        <img src="images/Globo3.jpg" alt="Globo Amarillo">
+                        <p class="price">$600 CLP</p>
                     </div>
                 </div>
             </div>
@@ -128,7 +131,23 @@
        </section>
     </main>
     <script src="script1.js"></script>
-    <script src="style.js"></script>
-       <canvas id="backgroundCanvas"></canvas>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const components = document.querySelectorAll('.component');
+
+            searchInput.addEventListener('input', function() {
+                const searchTerm = searchInput.value.toLowerCase();
+                
+                components.forEach(component => {
+                    const itemName = component.querySelector('.ItemName').textContent.toLowerCase();
+                    const isVisible = itemName.includes(searchTerm);
+
+                    component.style.display = isVisible ? 'block' : 'none';
+                });
+            });
+        });
+    </script>
+    <canvas id="backgroundCanvas"></canvas>
 </body>
 </html>
