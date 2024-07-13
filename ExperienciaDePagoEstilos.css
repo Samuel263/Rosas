@@ -28,7 +28,7 @@ body {
   transform: translate(-50%, -50%);
   text-align: center;
   width: 300px;
-  padding: 40px;
+  padding: 90px;
   background-color: rgba(0, 0, 0, 0.44); /* Fondo gris oscuro semi-transparente */
   backdrop-filter: blur(10px); /* Efecto de borrosidad */
   border-radius: 10px;
