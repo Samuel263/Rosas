@@ -368,3 +368,7 @@ h2 {
 h3 {
     font-family: serif;
 }
+
+.component:hover {
+  width: 10rem;
+}
