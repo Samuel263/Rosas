@@ -371,4 +371,5 @@ h3 {
 
 .component:hover {
   width: 40rem;
+    transition: width 0.3s ease;
 }
