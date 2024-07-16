@@ -152,6 +152,7 @@ button {
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-family: 'Roboto', Arial, sans-serif;
+  font-weight: bold;
 }
 
 button:hover {
@@ -361,5 +362,9 @@ h1 {
 }
 
 h2 {
+    font-family: serif;
+}
+
+h3 {
     font-family: serif;
 }
